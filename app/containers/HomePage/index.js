@@ -10,15 +10,47 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import Map from '../../components/Map';
+import DonutChart from '../../components/Charts/DonutChart';
+import './HomeStyle.css';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <div style={{ background: '#fff' }}>
+        <div style={{ background: '#555', height: '100%', position: 'fixed', width: '50px' }}></div>
+        <div className="ink-grid" style={{ padding: 0 }}>
+          <div className="column-group">
+            <div className="all-75">
+              <div className="column-group quarter-horizontal-gutters margin" style={{ margin: '0 0.5em 0 3em' }}>
+                <div className="all-30 marginTop">
+                  <div style={{ background: '#fff', height: '50vh' }}>
+                    <DonutChart />
+                  </div>
+                </div>
+                <div className="all-35 marginTop">
+                  <div style={{ background: '#6bc9c5', height: '50vh' }}></div>
+                </div>
+                <div className="all-35 marginTop">
+                  <div style={{ background: '#6bc9c5', height: '50vh' }}></div>
+                </div>
+                <div className="all-30 marginTop">
+                  <div style={{ background: '#6bc9c5', height: '48vh' }}></div>
+                </div>
+                <div className="all-35 marginTop">
+                  <div style={{ background: '#6bc9c5', height: '48vh' }}></div>
+                </div>
+                <div className="all-35 marginTop">
+                  <div style={{ background: '#6bc9c5', height: '48vh' }}></div>
+                </div>
+              </div>
+            </div>
+            <div className="all-25" style={{ height: '100vh' }}>
+              <Map></Map>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
