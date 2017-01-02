@@ -1,3 +1,53 @@
 .margin .marginTop {
   margin-top: 0.3em;
 }
+
+.boxShadow {
+-webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+-moz-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+
+.liner{
+  position: relative;
+}
+
+.liner::before{
+ content : "";
+ position: absolute;
+ top: 8%;
+ left: 0;
+ height: 12%;
+ width: 50%;  /* or 100px */
+ border-left: 0.2em solid magenta;
+}
+
+.line:before,
+.line:after {
+  content: "";
+  display: table;
+}
+.line:after {
+  clear: both;
+}
+.line {
+  *zoom: 1;
+}
+
+.wrapper {
+    padding:0;
+    margin:0;
+}
+.wrapper input {
+    height:20px;
+    margin:0;
+    padding-left: 30px;
+}
+.wrapper .fa-search {
+    position:absolute;
+    bottom:0.65em;
+    left:0;
+    width:10px;
+    height:10px;
+    color: #eaeaea
+}

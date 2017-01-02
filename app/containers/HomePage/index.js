@@ -11,37 +11,29 @@
 
 import React from 'react';
 import Map from '../../components/Map';
-import DonutChart from '../../components/Charts/DonutChart';
 import './HomeStyle.css';
+import Header from '../../components/Header';
+import Targets from '../../components/Targets';
+import Tasks from '../../components/Tasks';
+import Pilots from '../../components/Pilots';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div style={{ background: '#fff' }}>
-        <div style={{ background: '#555', height: '100%', position: 'fixed', width: '50px' }}></div>
-        <div className="ink-grid" style={{ padding: 0 }}>
-          <div className="column-group">
+      <section style={{ background: '#fafafa' }}>
+        <Header />
+        <div className="ink-grid" style={{ padding: 0, margin: '0 0 0 3.2em' }}>
+          <div className="column-group quarter-horizontal-gutters">
             <div className="all-75">
-              <div className="column-group quarter-horizontal-gutters margin" style={{ margin: '0 0.5em 0 3em' }}>
-                <div className="all-30 marginTop">
-                  <div style={{ background: '#fff', height: '50vh' }}>
-                    <DonutChart />
-                  </div>
+              <div className="column-group quarter-horizontal-gutters margin">
+                <Targets />
+                <Tasks />
+                <Pilots />
+                <div className="all-60 marginTop" style={{ height: '67vh' }}>
+                  <div className="boxShadow" style={{ background: '#fff', height: '67vh' }}></div>
                 </div>
-                <div className="all-35 marginTop">
-                  <div style={{ background: '#6bc9c5', height: '50vh' }}></div>
-                </div>
-                <div className="all-35 marginTop">
-                  <div style={{ background: '#6bc9c5', height: '50vh' }}></div>
-                </div>
-                <div className="all-30 marginTop">
-                  <div style={{ background: '#6bc9c5', height: '48vh' }}></div>
-                </div>
-                <div className="all-35 marginTop">
-                  <div style={{ background: '#6bc9c5', height: '48vh' }}></div>
-                </div>
-                <div className="all-35 marginTop">
-                  <div style={{ background: '#6bc9c5', height: '48vh' }}></div>
+                <div className="all-40 marginTop" style={{ height: '67vh' }}>
+                  <div className="boxShadow" style={{ background: '#fff', height: '67vh' }}></div>
                 </div>
               </div>
             </div>
@@ -50,7 +42,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             </div>
           </div>
         </div>
-      </div>
+      </section>
     );
   }
 }
