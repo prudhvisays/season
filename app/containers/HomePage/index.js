@@ -16,6 +16,7 @@ import Header from '../../components/Header';
 import Targets from '../../components/Targets';
 import Tasks from '../../components/Tasks';
 import Pilots from '../../components/Pilots';
+import Ranking from '../../components/Ranking';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -29,9 +30,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                 <Targets />
                 <Tasks />
                 <Pilots />
-                <div className="all-60 marginTop" style={{ height: '67vh' }}>
-                  <div className="boxShadow" style={{ background: '#fff', height: '67vh' }}></div>
-                </div>
+                <Ranking />
                 <div className="all-40 marginTop" style={{ height: '67vh' }}>
                   <div className="boxShadow" style={{ background: '#fff', height: '67vh' }}></div>
                 </div>
