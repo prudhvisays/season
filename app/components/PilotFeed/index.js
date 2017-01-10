@@ -1,23 +1,20 @@
 import React from 'react';
+import Score from '../Score';
 
 export default class PilotFeed extends React.Component { //eslint-disable-line
   render() {
     return (
-      <nav className="ink-navigation boxShadow" onClick={this.props.onClick}>
-        <ul className="menu horizontal white" style={{ marginLeft: '2.8em' }}>
-          <li className="align-center" style={{ marginRight: '1em' }}><a>
-            <p className="fw-200 medium" style={{ margin: '0', color: '#eaeaea' }}>Active</p>
-            <p className="fw-900" style={{ marginBottom: '0' }}>23</p></a></li>
-          <li className="align-center" style={{ marginRight: '1em' }}><a>
-            <p className="fw-200 medium" style={{ margin: '0', color: '#eaeaea' }}>Offline</p>
-            <p className="fw-900" style={{ marginBottom: '0' }}>23</p>
-          </a></li>
-          <li className="align-center"><a>
-            <p className="fw-200 medium" style={{ margin: '0', color: '#eaeaea' }}>Total</p>
-            <p className="fw-900" style={{ marginBottom: '0' }}>23</p>
-          </a></li>
-        </ul>
-      </nav>
+      <div className="ink-flex boxShadow" style={{ fontSize: '1rem' }}>
+        <div className="all-33">
+          <Score score={23} subTitle={'Active'} />
+        </div>
+        <div className="all-33">
+          <Score score={34} subTitle={'Offline'} />
+        </div>
+        <div className="all-33">
+          <Score score={57} subTitle={'Total'} />
+        </div>
+      </div>
     );
   }
 }

@@ -1,5 +1,7 @@
 import React from 'react';
-import PilotFeed from '../PilotFeed';
+import Feed from '../Feed';
+import TripCard from '../TripCard';
+import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
 
 export default class Pilots extends React.Component { //eslint-disable-line
   constructor() {
@@ -8,13 +10,14 @@ export default class Pilots extends React.Component { //eslint-disable-line
       expand: false,
     };
     this.taskExpand = this.taskExpand.bind(this);
+    this.detailedInfo = this.detailedInfo.bind(this);
   }
   componentDidMount() {
     let Datepicker = new Ink.UI.DatePicker( '.ink-datepicker' ); //eslint-disable-line
   }
   taskExpand() {
-    const taskDiv = document.querySelector('#TaskExpand');
-    const listShow = document.querySelector('#ListShow');
+    const taskDiv = document.querySelector('.TaskExpand');
+    const listShow = document.querySelector('.ListShow');
     if (!this.state.expand) {
       taskDiv.style.height = '98vh';
       listShow.style.opacity = '1';
@@ -23,70 +26,42 @@ export default class Pilots extends React.Component { //eslint-disable-line
     } else {
       taskDiv.style.height = '30vh';
       listShow.style.opacity = '0';
+      listShow.style.display = 'none';
       this.setState({ expand: false });
     }
+  }
+  detailedInfo() {
+    this.props.divPilot();
   }
   render() {
     return (
       <div className="all-40 marginTop" style={{ height: '30vh' }}>
-        <div id="TaskExpand" className="boxShadow PilotLiner" style={{ background: '#fff', height: '30vh', padding: '0.8em 0.8em', position: 'relative', transition: 'height 0.5s linear 0s' }}>
-          <div className="line">
-            <h6 className="push-left">Pilots</h6>
-            <div className="push-right">
-              <input type="text" className="ink-datepicker" data-format="d-m-Y" style={{ width: '92px' }} />
+        <div className="boxShadow PilotLiner TaskExpand block-background" style={{ height: '30vh', position: 'relative', transition: 'height 0.5s linear 0s' }}>
+          <div className="pilot-block ink-flex" style={{ padding: '0.5em 0.8em' }}>
+            <div className="all-50" style={{ margin: 0, color: 'rgb(81, 212, 255)' }}>Pilots</div>
+            <div className="all-50" style={{ textAlign: 'right' }}>
+              <input type="text" className="ink-datepicker" data-format="d-m-Y" style={{ width: '92px', color: '#fff' }} />
             </div>
           </div>
-          <div>
-            <PilotFeed ref={(c) => { this.taskDetails = c; }} onClick={this.taskExpand} />
-          </div>
-          <div className="search" style={{ marginTop: '37px', width: '20.90em' }}>
-            <div className="wrapper">
-              <i className="fa fa-search" aria-hidden="true"></i>
-              <input type="text" placeholder="Search" style={{ width: '100%', outline: 'none' }} />
-            </div>
-          </div>
-          <div id="ListShow" style={{ marginTop: '4.5em', display: 'none', opacity: '0', transition: 'all 0.5s linear 0s' }}>
-            <div className="ink-flex boxShadow marginBottom" style={{ padding: '0.5em' }}>
-              <div className="column-group all-auto">
-                <div className="all-100" style={{ border: 0, borderBottom: '1px solid #eaeaea', paddingBottom: '0.6em' }}>
-                  <div className="all-60">
-                    <img src="https://s-media-cache-ak0.pinimg.com/736x/8f/b0/77/8fb077e97b62cfab2a4dec108ac7112f.jpg" style={{ width: '25px', height: '25px', borderRadius: '50%', marginRight: '0.3em' }}></img>
-                    <div style={{ position: 'relative', left: '26.23px', top: '-7px' }}>
-                      <p style={{ margin: 0, fontSize: '10px', position: 'absolute', top: '-20px' }}>Pilot</p>
-                      <p style={{ display: 'inline-block', margin: '0', fontSize: '20px', position: 'absolute', top: '-16px' }}>mark</p>
-                    </div>
-                  </div>
-                  <div className="all-40" style={{ textAlign: 'right' }}>Live</div>
-                </div>
-                <div className="all-60" style={{ position: 'relative' }}>
-                  <p style={{ margin: 0, fontSize: '9px' }}>Tasks Completed</p>
-                  <p style={{ margin: 0, fontSize: '12px' }}>0 of 1</p>
-                </div>
-                <div className="all-40" style={{ textAlign: 'right', position: 'relative' }}>
-                  <p style={{ margin: 0, fontSize: '9px' }}>Travelled so far</p>
-                  <p style={{ margin: 0, fontSize: '12px' }}>5km</p></div>
+          <div style={{ padding: '0.8em 0.8em' }}>
+            <div className="ink-flex">
+              <div className="all-100">
+                <Sparklines data={[20, 5, 30, 9, 20, 5, 30, 9, 20, 5, 30, 9, 20, 5, 30, 9, 20, 30, 5, 10]} limit={20} width={100} height={10} margin={0}>
+                  <SparklinesLine style={{ stroke: '#51d4ff', strokeWidth: '0.5', fill: 'none' }} />
+                </Sparklines>
+              </div>
+              <div className="all-100">
+                <Feed tasksExpand={this.taskExpand} />
               </div>
             </div>
-            <div className="ink-flex boxShadow marginBottom" style={{ padding: '0.5em' }}>
-              <div className="column-group all-auto">
-                <div className="all-100" style={{ border: 0, borderBottom: '1px solid #eaeaea', paddingBottom: '0.6em' }}>
-                  <div className="all-60">
-                    <img src="https://s-media-cache-ak0.pinimg.com/736x/8f/b0/77/8fb077e97b62cfab2a4dec108ac7112f.jpg" style={{ width: '25px', height: '25px', borderRadius: '50%', marginRight: '0.3em' }}></img>
-                    <div style={{ position: 'relative', left: '26.23px', top: '-7px' }}>
-                      <p style={{ margin: 0, fontSize: '10px', position: 'absolute', top: '-20px' }}>Pilot</p>
-                      <p style={{ display: 'inline-block', margin: '0', fontSize: '20px', position: 'absolute', top: '-16px' }}>mark</p>
-                    </div>
-                  </div>
-                  <div className="all-40" style={{ textAlign: 'right' }}>Live</div>
-                </div>
-                <div className="all-60" style={{ position: 'relative' }}>
-                  <p style={{ margin: 0, fontSize: '9px' }}>Tasks Completed</p>
-                  <p style={{ margin: 0, fontSize: '12px' }}>0 of 1</p>
-                </div>
-                <div className="all-40" style={{ textAlign: 'right', position: 'relative' }}>
-                  <p style={{ margin: 0, fontSize: '9px' }}>Travelled so far</p>
-                  <p style={{ margin: 0, fontSize: '12px' }}>5km</p></div>
+            <div className="search" style={{ marginTop: '6px', width: '20.90em' }}>
+              <div className="wrapper">
+                <i className="fa fa-search" aria-hidden="true"></i>
+                <input type="text" placeholder="Search" style={{ width: '100%', outline: 'none' }} />
               </div>
+            </div>
+            <div className="ListShow" style={{ marginTop: '4.5em', display: 'none', opacity: '0', transition: 'all 0.5s linear 0s' }}>
+              <TripCard detailedInfo={this.detailedInfo} />
             </div>
           </div>
         </div>

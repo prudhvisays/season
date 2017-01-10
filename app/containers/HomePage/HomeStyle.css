@@ -1,3 +1,6 @@
+h6, h3 {
+  color: #fff;
+}
 .margin .marginTop {
   margin-top: 0.3em;
 }
@@ -5,13 +8,29 @@
 .marginBottom {
   margin-bottom: 0.6em;
 }
-
-.boxShadow {
--webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
--moz-box-shadow: 0 1px 4px rgba(0,0,0,.04);
-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+.block-background {
+  background-color: #394264;
 }
-
+.boxShadow {
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  -moz-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+.second-boxShadow {
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.07);
+  -moz-box-shadow: 0 1px 4px rgba(0,0,0,.07);
+  box-shadow: 0 1px 4px rgba(0,0,0,.07);
+}
+.third-boxShadow {
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.09);
+  -moz-box-shadow: 0 1px 4px rgba(0,0,0,.09);
+  box-shadow: 0 1px 4px rgba(0,0,0,.09);
+}
+.line-boxShadow {
+  -webkit-box-shadow:   0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  -moz-box-shadow:   0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  box-shadow:   0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
 .liner, .PilotLiner{
   position: relative;
 }
@@ -19,20 +38,20 @@ box-shadow: 0 1px 4px rgba(0,0,0,.04);
 .liner::before{
  content : "";
  position: absolute;
- top: 8%;
+ top: 0;
  left: 0;
- height: 12%;
- width: 50%;  /* or 100px */
- border-left: 0.2em solid magenta;
+ height: 42px;
+ width: 10%;  /* or 100px */
+ border-left: 0.2em solid rgb(245, 37, 151);
 }
 .PilotLiner::before{
  content : "";
  position: absolute;
  top: 0;
- left: 168px;
- height: 12%;
+ left: 0;
+ height: 42px;
  width: 10%;  /* or 100px */
- border-top: 0.2em solid magenta;
+ border-left: 0.2em solid rgb(81, 212, 255);
 }
 
 .line:before,
@@ -56,12 +75,109 @@ box-shadow: 0 1px 4px rgba(0,0,0,.04);
     height:20px;
     margin:0;
     padding-left: 30px;
+    color: #9099b7;
 }
+.wrapper input::-webkit-input-placeholder {
+color: #9099b7 !important;
+}
+
+.wrapper input:-moz-placeholder { /* Firefox 18- */
+color: #9099b7 !important;
+}
+
+.wrapper input::-moz-placeholder {  /* Firefox 19+ */
+color: #9099b7 !important;
+}
+
+.wrapper input:-ms-input-placeholder {
+color: #9099b7 !important;
+}
+
 .wrapper .fa-search {
     position:absolute;
     bottom:0.65em;
     left:0;
     width:10px;
     height:10px;
-    color: #eaeaea
+    color: #9099b7;
+}
+
+.profile-timeline {
+  border: 1px solid #11a8ab;
+}
+
+.user-info > div{
+  margin-bottom: 0.8em;
+}
+
+.first-row{
+  border-bottom: 1px solid rgba(144, 153, 183, 0.35);
+}
+.profile-timeline .first-row {
+  border-bottom: 1px solid #11a8ab;
+}
+
+.right-border {
+  border-right: 1px solid #11a8ab;
+}
+
+.sub-title{
+  font-size: 0.65rem;
+  color: #9099b7;
+}
+
+.profile-tasks, .profile-ontime, .profile-time, .profile-distance, .profile-data{
+  padding: 0.5em;
+}
+
+.divider {
+  margin: 0 0.7em;
+  color: rgba(144, 153, 183, 0.35);
+}
+
+.profile-status {
+  margin-right: 1.5em;
+}
+
+a:hover{
+  color: inherit;
+}
+
+.user-scroll {
+   overflow-y: scroll;
+}
+
+.user-scroll::-webkit-scrollbar {
+    width: 3px;
+}
+
+.user-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(144, 153, 183, 0.35);
+    border-radius: 10px;
+}
+
+.user-scroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(144, 153, 183, 0.35);
+}
+
+.button-Bottom {
+  position: absolute;
+  bottom: 0;
+}
+.orders-block, .pilot-block {
+  background: rgba(22, 24, 45, 0.47);
+}
+
+.highlight {
+  transition: all 0.2s;
+  border-bottom:2px solid white;
+  position: absolute;
+  top:0;
+  background:white;
+  left:0;
+  z-index: -1;
+  border-radius:20px;
+  display: block;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2)
 }

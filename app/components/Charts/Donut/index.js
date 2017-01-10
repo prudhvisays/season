@@ -8,11 +8,10 @@ class DonutChart extends React.Component { //eslint-disable-line
       data: [
           { label: 'Download Sales', value: 12 },
           { label: 'In-Store Sales', value: 30 },
-          { label: 'Mail-Order Sales', value: 20 },
       ],
       size: true,
       colors: [
-        '#ff6666', '#ff6656', '#ff6678',
+        '#1d233b', '#394264',
       ],
     });
   }

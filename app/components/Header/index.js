@@ -4,7 +4,7 @@ import HeaderStyle from './HeaderStyle';
 export default class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <HeaderStyle className="boxShadow" />
+      <HeaderStyle className="boxShadow block-background" />
     );
   }
 }

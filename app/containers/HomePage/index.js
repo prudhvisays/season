@@ -17,22 +17,50 @@ import Targets from '../../components/Targets';
 import Tasks from '../../components/Tasks';
 import Pilots from '../../components/Pilots';
 import Ranking from '../../components/Ranking';
+import classnames from 'classnames';
+import UserInfo from '../../components/UserInfo';
+import Tabs from '../../components/Tabs';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  constructor() {
+    super();
+    this.state = {
+      compressed: false,
+      pilotState: false,
+      orderDetails: false,
+    };
+    this.divTask = this.divTask.bind(this);
+    this.divPilot = this.divPilot.bind(this);
+    this.orderDetails = this.orderDetails.bind(this);
+  }
+  divTask() {
+    this.setState({ compressed: !this.state.compressed });
+  }
+  divPilot() {
+    this.setState({ compressed: !this.state.compressed });
+    this.setState({ pilotState: !this.state.pilotState });
+  }
+  orderDetails() {
+    this.setState({ orderDetails: !this.state.orderDetails });
+  }
   render() {
+    const { compressed, pilotState, orderDetails } = this.state;
     return (
-      <section style={{ background: '#fafafa' }}>
+      <section style={{ background: '#1f253d', color: '#fff' }}>
         <Header />
         <div className="ink-grid" style={{ padding: 0, margin: '0 0 0 3.2em' }}>
           <div className="column-group quarter-horizontal-gutters">
             <div className="all-75">
               <div className="column-group quarter-horizontal-gutters margin">
                 <Targets />
-                <Tasks />
-                <Pilots />
-                <Ranking />
+                <Tasks divTask={this.divTask} orderDetails={this.orderDetails} />
+                <Pilots divPilot={this.divPilot} />
+                <div ref={(c) => { this.compress = c; }} className={classnames('marginTop', { 'all-60': !compressed, 'all-20': compressed })} style={{ height: '67vh' }}>
+                  <Ranking />
+                </div>
+                {compressed && <div className="all-40 marginTop">{ pilotState && <UserInfo />}</div>}
                 <div className="all-40 marginTop" style={{ height: '67vh' }}>
-                  <div className="boxShadow" style={{ background: '#fff', height: '67vh' }}></div>
+                  {!orderDetails ? <div className="boxShadow block-background" style={{ height: '67vh' }}></div> : <Tabs /> }
                 </div>
               </div>
             </div>
