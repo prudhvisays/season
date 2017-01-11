@@ -82,12 +82,8 @@ export default class Tabs extends React.Component { //eslint-disable-line
           </div>
         </div>
         <div id="Paris" className="tabcontent">
-          <h3>Paris</h3>
-          <p>Paris is the capital of France.</p>
         </div>
         <div id="Tokyo" className="tabcontent">
-          <h3>Tokyo</h3>
-          <p>Tokyo is the capital of Japan.</p>
         </div>
       </div>
     );

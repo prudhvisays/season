@@ -6,12 +6,12 @@ class DonutChart extends React.Component { //eslint-disable-line
     Morris.Donut({ //eslint-disable-line
       element: 'chart',
       data: [
-          { label: 'Download Sales', value: 12 },
-          { label: 'In-Store Sales', value: 30 },
+          { label: 'Target', value: 100 },
+          { label: 'Completed', value: 800 },
       ],
       size: true,
       colors: [
-        '#1d233b', '#394264',
+        '#1d233b', '#FFCA28',
       ],
     });
   }

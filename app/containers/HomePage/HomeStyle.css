@@ -22,21 +22,64 @@ h6, h3 {
   box-shadow: 0 1px 4px rgba(0,0,0,.07);
 }
 .third-boxShadow {
-  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.09);
-  -moz-box-shadow: 0 1px 4px rgba(0,0,0,.09);
-  box-shadow: 0 1px 4px rgba(0,0,0,.09);
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  -moz-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  -webkit-transition: all .2s;
+	transition: all .2s;
 }
 .third-boxShadow:hover {
   -webkit-box-shadow: 0 1px 4px rgb(245, 37, 151);
   -moz-box-shadow: 0 1px 4px rgb(245, 37, 151);
   box-shadow: 0 1px 4px rgb(245, 37, 151);
 }
+.pilot-boxShadow {
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  -moz-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  -webkit-transition: all .2s;
+	transition: all .2s;
+}
+.pilot-boxShadow:hover {
+  -webkit-box-shadow: 0 2px 2px 0 rgba(81, 212, 255, 0.33), 0 0 0 1px rgba(81, 212, 255, 0.55);
+  -moz-box-shadow: 0 2px 2px 0 rgba(81, 212, 255, 0.33), 0 0 0 1px rgba(81, 212, 255, 0.55);
+  box-shadow: 0 2px 2px 0 rgba(81, 212, 255, 0.33), 0 0 0 1px rgba(81, 212, 255, 0.55);
+}
+.pilot-feed-boxShadow {
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  -moz-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  -webkit-transition: all .2s;
+	transition: all .2s;
+}
+.pilot-feed-boxShadow:hover {
+  -webkit-box-shadow: 0 1px 4px rgb(81, 212, 255);
+  -moz-box-shadow: 0 1px 4px rgb(81, 212, 255);
+  box-shadow: 0 1px 4px rgb(81, 212, 255);
+}
+.task-feed-boxShadow {
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  -moz-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  -webkit-transition: all .2s;
+	transition: all .2s;
+}
+.task-feed-boxShadow:hover {
+  -webkit-box-shadow: 0 1px 4px rgb(245, 37, 151);
+  -moz-box-shadow: 0 1px 4px rgb(245, 37, 151);
+  box-shadow: 0 1px 4px rgb(245, 37, 151);
+}
+.third-boxShadow:focus {
+  -webkit-box-shadow: 0 1px 4px rgb(81, 212, 255);
+  -moz-box-shadow: 0 1px 4px rgb(81, 212, 255);
+  box-shadow: 0 1px 4px rgb(81, 212, 255);
+}
 .line-boxShadow {
   -webkit-box-shadow:   0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
   -moz-box-shadow:   0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
   box-shadow:   0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 }
-.liner, .PilotLiner{
+.liner, .PilotLiner, .player-line{
   position: relative;
 }
 
@@ -57,6 +100,34 @@ h6, h3 {
  height: 42px;
  width: 10%;  /* or 100px */
  border-left: 0.2em solid rgb(81, 212, 255);
+}
+.player {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+.player-list{
+  display: block;
+  line-height: 2.8em;
+  border-bottom: 1px solid #1f253d;
+  transform: translateY(0);
+  font-size: 1em;
+	-webkit-transition: all .2s;
+	transition: all .2s;
+}
+.player-list:hover{
+  background: #50597b;
+  transform: translateY(-2px);
+	text-decoration: none;
+
+}
+.player-line::before{
+ content : "";
+ position: absolute;
+ top: 10px;
+ left: 0;
+ height: 19px;
+ width: 4px;  /* or 100px */
 }
 
 .line:before,
@@ -185,4 +256,112 @@ a:hover{
   border-radius:20px;
   display: block;
   box-shadow: 0 0 10px rgba(0,0,0,0.2)
+}
+
+.time-length, .player, .player-list {
+  margin: 0;
+  padding: 0;
+}
+
+.time-length-btn {
+    display: block;
+    width: 70px;
+    line-height: 32px;
+    background: #50597b;
+    font-size: 14px;
+    text-align: center;
+    margin-right: 5px;
+    -webkit-transition: background .3s;
+    transition: background .3s
+}
+
+.time-length-btn:hover {
+							text-decoration: none;
+							background: #e64c65;
+						}
+
+.recharts-wrapper {
+  height: 229px !important;
+}
+
+.top-group-list .title, .group-name{
+  color: #9099b7;
+}
+.top-group-list{
+  font-size: 0.8rem;
+}
+
+.recharts-layer .recharts-cartesian-axis-tick text{
+  font-size: 0.8em;
+}
+.custom-chart .recharts-wrapper {
+  right: 7em;
+  top: 1em;
+}
+.recharts-legend-wrapper{
+  bottom: 46px !important;
+}
+.second-chart .recharts-wrapper {
+  right: 0;
+  top: -3em;
+  left: 9.5em;
+}
+.second-chart .recharts-legend-wrapper{
+  bottom: 46px
+}
+
+.list-scroll {
+   overflow-y: scroll;
+   height: 63vh;
+   padding: 0.1em;
+}
+
+.list-scroll::-webkit-scrollbar {
+    width: 3px;
+}
+
+.list-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(144, 153, 183, 0.35);
+    border-radius: 10px;
+}
+
+.list-scroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+.listShow {
+   overflow-y: scroll;
+   height: 64vh;
+   padding: 0.2em;
+}
+
+.listShow::-webkit-scrollbar {
+    width: 3px;
+}
+
+.listShow::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(144, 153, 183, 0.35);
+    border-radius: 10px;
+}
+
+.listShow::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+
+.top-group-list {
+  padding: 0.8em;
+  height: 56vh;
+  overflow-y: scroll;
+}
+
+.top-group-list::-webkit-scrollbar {
+    width: 3px;
+}
+
+.top-group-list::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(144, 153, 183, 0.35);
+    border-radius: 10px;
+}
+
+.top-group-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
 }

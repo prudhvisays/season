@@ -1,13 +1,44 @@
 import React from 'react';
-
+import AreaChart from '../Charts/AreaChart';
 
 export default class Target extends React.Component { //eslint-disable-line
   render() {
+    const { compressed } = this.props
     return (
       <div className="boxShadow block-background" style={{ height: '67vh' }}>
-        <div className="column-group">
-          <div className="all-50"></div>
-          <div className="all-50">
+        <div className="ink-flex">
+          <div className="all-100">
+            <ul className="ink-flex time-length push-right">
+              <li className=""><a className="time-length-btn">Week</a></li>
+              <li className=""><a className="time-length-btn">Month</a></li>
+              <li className=""><a className="time-length-btn">Year</a></li>
+            </ul>
+          </div>
+          <div className="all-100">
+            <div className="ink-flex" style={{ position: 'relative', padding: '0.8em', top: '-1em'}}>
+                <div className="all-50" style={{ position: 'relative'}}>
+                  <div className="ink-flex vertical" style={{ position: 'absolute', top: '2em' }}>
+
+                  </div>
+                </div>
+                { !compressed && <div className="all-50">
+                    <div className="custom-chart">
+                      <AreaChart />
+                    </div>
+                </div>}
+            </div>
+          </div>
+          <div className="all-100">
+            <div className="all-50" style={{ position: 'relative'}}>
+              <div className="ink-flex vertical" style={{ position: 'absolute', top: '2em' }}>
+
+              </div>
+            </div>
+            { !compressed && <div className="all-50">
+                <div className="second-chart">
+                  <AreaChart />
+                </div>
+            </div>}
           </div>
         </div>
       </div>

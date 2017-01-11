@@ -3,16 +3,17 @@ import Score from '../Score';
 
 export default class PilotFeed extends React.Component { //eslint-disable-line
   render() {
+    const { tasksExpand } = this.props;
     return (
-      <div className="ink-flex boxShadow" style={{ fontSize: '1rem' }}>
-        <div className="all-33">
-          <Score score={23} subTitle={'Active'} />
+      <div className="ink-flex pilot-feed-boxShadow" style={{ fontSize: '1rem' }}>
+        <div className="all-33" onClick={tasksExpand}>
+          <Score score={21} subTitle={'Active'} />
         </div>
-        <div className="all-33">
-          <Score score={34} subTitle={'Offline'} />
+        <div className="all-33" onClick={tasksExpand}>
+          <Score score={26} subTitle={'Offline'} />
         </div>
-        <div className="all-33">
-          <Score score={57} subTitle={'Total'} />
+        <div className="all-33" onClick={tasksExpand}>
+          <Score score={47} subTitle={'Total'} />
         </div>
       </div>
     );
