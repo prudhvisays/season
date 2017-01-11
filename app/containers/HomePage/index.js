@@ -48,7 +48,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     return (
       <section style={{ background: '#1f253d', color: '#fff' }}>
         <Header />
-        <div className="ink-grid" style={{ padding: 0, margin: '0 0 0 3.2em' }}>
+        <div className="ink-grid" style={{ padding: 0, margin: '0 0 0 3.5em' }}>
           <div className="column-group quarter-horizontal-gutters">
             <div className="all-75">
               <div className="column-group quarter-horizontal-gutters margin">
