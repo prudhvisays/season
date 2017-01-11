@@ -65,6 +65,8 @@ export default class Tasks extends React.Component { //eslint-disable-line
             </div>
             <div className="listShow" style={{ marginTop: '4.5em', display: 'none', opacity: '0', transition: 'all 0.5s linear 0s' }}>
               <TripCard detailedInfo={this.detailedInfo} />
+              <TripCard detailedInfo={this.detailedInfo} />
+              <TripCard detailedInfo={this.detailedInfo} />
               { expand && <button className="button-Bottom ink-button red">hello</button>}
             </div>
           </div>

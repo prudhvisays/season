@@ -5,7 +5,7 @@ export default class TripCard extends React.Component { //eslint-disable-line
     const { detailedInfo } = this.props;
     return (
       <a onClick={detailedInfo} style={{ textDecoration: 'none', color: 'inherit' }}>
-        <div className="trip-card third-boxShadow block-background" style={{ fontSize: '0.7rem', padding: '1em' }}>
+        <div className="trip-card third-boxShadow block-background marginBottom" style={{ fontSize: '0.7rem', padding: '1em' }}>
           <div className="first-row ink-flex" style={{ paddingBottom: '0.3em' }}>
             <div className="all-50 ink-flex push-left">
               <div className="trip-image">

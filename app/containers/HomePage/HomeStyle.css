@@ -27,9 +27,9 @@ h6, h3 {
   box-shadow: 0 1px 4px rgba(0,0,0,.09);
 }
 .third-boxShadow:hover {
-  -webkit-box-shadow: 0 1px 4px rgba(245, 37, 151, 0.55);
-  -moz-box-shadow: 0 1px 4px rgba(245, 37, 151, 0.55);
-  box-shadow: 0 1px 4px rgba(245, 37, 151, 0.55);
+  -webkit-box-shadow: 0 1px 4px rgb(245, 37, 151);
+  -moz-box-shadow: 0 1px 4px rgb(245, 37, 151);
+  box-shadow: 0 1px 4px rgb(245, 37, 151);
 }
 .line-boxShadow {
   -webkit-box-shadow:   0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
