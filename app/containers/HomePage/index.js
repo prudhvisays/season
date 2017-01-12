@@ -20,7 +20,7 @@ import Ranking from '../../components/Ranking';
 import classnames from 'classnames';
 import UserInfo from '../../components/UserInfo';
 import Tabs from '../../components/Tabs';
-import TopGroup from '../../components/TopGroup';
+import GroupBlock from '../../components/GroupBlock';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor() {
@@ -67,20 +67,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                 {compressed && <div className="all-40 marginTop">{ pilotState && <UserInfo />}</div>}
                 <div className="all-40 marginTop" style={{ height: '67vh' }}>
                   {!orderDetails ? <div className="boxShadow block-background" style={{ height: '67vh' }}>
-                    { !groupDisplay ? <div className="ink-flex">
-                      <div className="all-100">
-                        <ul className="ink-flex time-length push-center">
-                          <li className=""><a className="time-length-btn">Week</a></li>
-                          <li className=""><a className="time-length-btn">Month</a></li>
-                          <li className=""><a className="time-length-btn">Year</a></li>
-                        </ul>
-                      </div>
-                      <div className="all-100">
-                        <div className="top-group-list" style={{ padding: '0.8em' }}>
-                          <TopGroup />
-                        </div>
-                      </div>
-                    </div> : null}
+                    { !groupDisplay ? <GroupBlock /> : null }
                   </div> : <Tabs /> }
                 </div>
               </div>

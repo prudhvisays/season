@@ -178,23 +178,23 @@ color: #9099b7 !important;
     color: #9099b7;
 }
 
-.profile-timeline {
-  border: 1px solid #11a8ab;
-}
-
 .user-info > div{
   margin-bottom: 0.8em;
+}
+
+.profile-timeline {
+  border: 1px solid rgb(81, 212, 255);
 }
 
 .first-row{
   border-bottom: 1px solid rgba(144, 153, 183, 0.35);
 }
 .profile-timeline .first-row {
-  border-bottom: 1px solid #11a8ab;
+  border-bottom: 1px solid rgb(81, 212, 255);
 }
 
 .right-border {
-  border-right: 1px solid #11a8ab;
+  border-right: 1px solid rgb(81, 212, 255);
 }
 
 .sub-title{
@@ -208,11 +208,7 @@ color: #9099b7 !important;
 
 .divider {
   margin: 0 0.7em;
-  color: rgba(144, 153, 183, 0.35);
-}
-
-.profile-status {
-  margin-right: 1.5em;
+  color: rgb(81, 212, 255);
 }
 
 a:hover{
@@ -266,7 +262,7 @@ a:hover{
 .time-length-btn {
     display: block;
     width: 70px;
-    line-height: 32px;
+    line-height: 21px;
     background: #50597b;
     font-size: 14px;
     text-align: center;
@@ -349,7 +345,7 @@ a:hover{
 
 .top-group-list {
   padding: 0.8em;
-  height: 56vh;
+  height: 54vh;
   overflow-y: scroll;
 }
 
@@ -364,4 +360,35 @@ a:hover{
 
 .top-group-list::-webkit-scrollbar-thumb {
     border-radius: 10px;
+}
+
+.fa.fa-battery-three-quarters{
+  color: rgb(81, 212, 255);
+}
+
+.team-block{
+  background: rgba(22, 24, 45, 0.47);
+  position: relative;
+}
+
+.team-block::before{
+  content : "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 42px;
+  width: 10%;  /* or 100px */
+  border-left: 0.2em solid #18FFFF;
+}
+.team-search > input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    text-decoration: none;
+    outline: none;
+}
+
+.team-search > input[type=text]:focus {
+
 }

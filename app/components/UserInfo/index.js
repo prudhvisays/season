@@ -9,8 +9,8 @@ export default class UserInfo extends React.Component { //eslint-disable-line
         <div className="user-info" style={{ padding: '1em' }}>
           <div className="ProfilePic">
             <div className="ink-flex push-center">
-              <div className="profile-pic" style={{ width: '100px', height: '100px', borderRadius: '50%', overflow: 'hidden', margin: 0 }}>
-                <img src="https://s-media-cache-ak0.pinimg.com/736x/8f/b0/77/8fb077e97b62cfab2a4dec108ac7112f.jpg" alt="card" style={{ height: '100px', width: '100%' }}></img>
+              <div className="profile-pic" style={{ width: '100px', height: '100px', borderRadius: '50%', overflow: 'hidden', margin: 0, border: '6px double #51d4ff' }}>
+                <img src="http://www.heraldsquarecosmeticdental.com/files/2011/08/smile-man1.jpg" alt="card" style={{ height: '100px', width: '100%' }}></img>
               </div>
             </div>
           </div>
@@ -28,7 +28,7 @@ export default class UserInfo extends React.Component { //eslint-disable-line
               </div>
               <div className="divider"><span> | </span></div>
               <div className="battery-status">
-                <span className="fab-100">52%</span>
+                <span className="fab-100">52% <i className="fa fa-battery-three-quarters"></i></span>
               </div>
             </div>
           </div>
@@ -62,18 +62,18 @@ export default class UserInfo extends React.Component { //eslint-disable-line
               </div>
               <div className="all-33">
                 <div className="ink-flex vertical push-middle profile-data">
-                  <div>49.8</div>
-                  <div className="sub-title">Data</div>
+                  <div>4.5</div>
+                  <div className="sub-title">Rating</div>
                 </div>
               </div>
             </div>
           </div>
           <div className="trips">
-            <TripCard />
-            <PilotTripCard pilotStatus={'Ended on Dec 12, 7:30'} totalTask={1} completedTask={1} pilotDistance={23}/>
-            <PilotTripCard pilotStatus={'Ended on Dec 14, 2:30'} totalTask={1} completedTask={1} pilotDistance={24}/>
-            <PilotTripCard pilotStatus={'Ended on Dec 29, 8:30'} totalTask={1} completedTask={1} pilotDistance={30}/>
-            <PilotTripCard pilotStatus={'Ended on Dec 30, 13:30'} totalTask={1} completedTask={1} pilotDistance={50}/>
+            <TripCard customerName={'Ferry'} orderStatus={'Live'} orderAddress={'Madhapur'} orderTime={'10:40'} />
+            <PilotTripCard pilotStatus={'Ended on Dec 12, 7:30 PM'} totalTask={1} completedTask={1} pilotDistance={23}/>
+            <PilotTripCard pilotStatus={'Ended on Dec 12, 2:30 PM'} totalTask={1} completedTask={1} pilotDistance={24}/>
+            <PilotTripCard pilotStatus={'Ended on Dec 12, 8:30 PM'} totalTask={1} completedTask={1} pilotDistance={30}/>
+            <PilotTripCard pilotStatus={'Ended on Dec 12, 1:30 PM'} totalTask={1} completedTask={1} pilotDistance={50}/>
           </div>
         </div>
       </div>

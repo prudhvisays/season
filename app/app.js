@@ -30,7 +30,6 @@ import 'sanitize.css/sanitize.css';
 import './Ink/dist/css/ink.css';
 import './Ink/dist/css/ink-ie.css';
 import './Ink/dist/css/ink-flex.min.css';
-import './Ink/dist/css/font-awesome.css';
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
 // Optionally, this could be changed to leverage a created history

@@ -16,7 +16,7 @@ export default class PilotTripCard extends React.Component { //eslint-disable-li
           <div className="second-row ink-flex">
             <div className="all-50 ink-flex push-left">
               <div className="trip-info ink-flex vertical">
-                <div className="sub-title">Address</div>
+                <div className="sub-title">Tasks Completed</div>
                 <div>{completedTask} of {totalTask}</div>
               </div>
             </div>
