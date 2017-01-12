@@ -25,7 +25,7 @@ export default class Target extends React.Component { //eslint-disable-line
                 </div>
               {!compressed && <div className="all-50">
                 <div className="custom-chart">
-                  <AreaChart data={hourData} color={'rgb(245, 37, 151)'} />
+                  <AreaChart data={hourData} color={'rgb(81, 212, 255)'} />
                 </div>
               </div>}
             </div>
