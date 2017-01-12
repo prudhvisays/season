@@ -1,5 +1,7 @@
 import React from 'react';
 import AreaChart from '../Charts/AreaChart';
+import { hourData } from './hourData';
+import { weekData } from './weekData';
 
 export default class Target extends React.Component { //eslint-disable-line
   render() {
@@ -21,23 +23,22 @@ export default class Target extends React.Component { //eslint-disable-line
 
                   </div>
                 </div>
-                { !compressed && <div className="all-50">
-                    <div className="custom-chart">
-                      <AreaChart />
-                    </div>
-                </div>}
+              {!compressed && <div className="all-50">
+                <div className="custom-chart">
+                  <AreaChart data={hourData} color={'rgb(245, 37, 151)'} />
+                </div>
+              </div>}
             </div>
           </div>
           <div className="all-100">
             <div className="all-50" style={{ position: 'relative'}}>
               <div className="ink-flex vertical" style={{ position: 'absolute', top: '2em' }}>
-
               </div>
             </div>
-            { !compressed && <div className="all-50">
-                <div className="second-chart">
-                  <AreaChart />
-                </div>
+            {!compressed && <div className="all-50">
+              <div className="second-chart">
+                <AreaChart data={weekData} color={'rgb(81, 212, 255)'} />
+              </div>
             </div>}
           </div>
         </div>

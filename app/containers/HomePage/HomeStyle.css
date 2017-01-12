@@ -277,7 +277,7 @@ a:hover{
 						}
 
 .recharts-wrapper {
-  height: 229px !important;
+  height: 194px !important;
 }
 
 .top-group-list .title, .group-name{
@@ -288,22 +288,19 @@ a:hover{
 }
 
 .recharts-layer .recharts-cartesian-axis-tick text{
-  font-size: 0.8em;
+  font-size: 0.6em;
 }
 .custom-chart .recharts-wrapper {
-  right: 7em;
+  right: 7.3em;
   top: 1em;
 }
 .recharts-legend-wrapper{
-  bottom: 46px !important;
+  bottom: 12px !important;
 }
 .second-chart .recharts-wrapper {
   right: 0;
-  top: -3em;
+  top: 0;
   left: 9.5em;
-}
-.second-chart .recharts-legend-wrapper{
-  bottom: 46px
 }
 
 .list-scroll {
