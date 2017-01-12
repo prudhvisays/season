@@ -237,7 +237,7 @@ a:hover{
   position: absolute;
   bottom: 0;
 }
-.orders-block, .pilot-block {
+.orders-block, .pilot-block, .team-block {
   background: rgba(22, 24, 45, 0.47);
 }
 
@@ -364,7 +364,6 @@ a:hover{
 }
 
 .team-block{
-  background: rgba(22, 24, 45, 0.47);
   position: relative;
 }
 
