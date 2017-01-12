@@ -30,11 +30,13 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
       pilotState: false,
       orderDetails: false,
       groupDisplay: false,
+      addTask: false,
     };
     this.divTask = this.divTask.bind(this);
     this.divPilot = this.divPilot.bind(this);
     this.orderDetails = this.orderDetails.bind(this);
     this.groupDisplay = this.groupDisplay.bind(this);
+    this.addTask = this.addTask.bind(this);
   }
   divTask() {
     this.setState({ compressed: !this.state.compressed });
@@ -49,11 +51,14 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
   orderDetails() {
     this.setState({ orderDetails: !this.state.orderDetails });
   }
+  addTask() {
+    this.setState({ addTask: !this.state.addTask });
+  }
   render() {
-    const { compressed, pilotState, orderDetails, groupDisplay } = this.state;
+    const { compressed, pilotState, orderDetails, groupDisplay, addTask } = this.state;
     return (
       <section style={{ background: '#1f253d', color: '#fff' }}>
-        <Header />
+        <Header addTask={this.addTask} />
         <div className="ink-grid" style={{ padding: 0, margin: '0 0 0 3.5em' }}>
           <div className="column-group quarter-horizontal-gutters">
             <div className="all-75">
@@ -61,9 +66,11 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                 <Targets />
                 <Tasks divTask={this.divTask} orderDetails={this.orderDetails} />
                 <Pilots divPilot={this.divPilot} groupDisplay={this.groupDisplay} />
-                <div ref={(c) => { this.compress = c; }} className={classnames('marginTop', { 'all-60': !compressed, 'all-20': compressed })} style={{ height: '67vh' }}>
-                  <Ranking compressed={compressed}/>
-                </div>
+                { !addTask ? <div ref={(c) => { this.compress = c; }} className={classnames('marginTop', { 'all-60': !compressed, 'all-20': compressed })} style={{ height: '67vh' }}>
+                  <Ranking compressed={compressed} />
+                </div> : <div className="all-60 marginTop" style={{ height: '67vh' }}>
+                  <div className="boxShadow block-background" style={{ height: '67vh' }}></div>
+                </div>}
                 {compressed && <div className="all-40 marginTop">{ pilotState && <UserInfo />}</div>}
                 <div className="all-40 marginTop" style={{ height: '67vh' }}>
                   {!orderDetails ? <div className="boxShadow block-background" style={{ height: '67vh' }}>
