@@ -10,6 +10,8 @@
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
+import { orderExpand, orderClose, pickupCord, deliveryCord } from './actions';
 import Map from '../../components/Map';
 import './HomeStyle.css';
 import Header from '../../components/Header';
@@ -21,8 +23,9 @@ import classnames from 'classnames';
 import UserInfo from '../../components/UserInfo';
 import Tabs from '../../components/Tabs';
 import GroupBlock from '../../components/GroupBlock';
+import AddTask from '../../components/AddTask';
 
-export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
     super();
     this.state = {
@@ -64,12 +67,12 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             <div className="all-75">
               <div className="column-group quarter-horizontal-gutters margin">
                 <Targets />
-                <Tasks divTask={this.divTask} orderDetails={this.orderDetails} />
+                <Tasks divTask={this.divTask} orderDetails={this.orderDetails} orderBlock={this.props.orderexpand} {...this.props} />
                 <Pilots divPilot={this.divPilot} groupDisplay={this.groupDisplay} />
                 { !addTask ? <div ref={(c) => { this.compress = c; }} className={classnames('marginTop', { 'all-60': !compressed, 'all-20': compressed })} style={{ height: '67vh' }}>
                   <Ranking compressed={compressed} />
                 </div> : <div className="all-60 marginTop" style={{ height: '67vh' }}>
-                  <div className="boxShadow block-background" style={{ height: '67vh' }}></div>
+                  <AddTask pickupCord={this.props.pickupCord} deliveryCord={this.props.deliveryCord} pCord={this.props.pickupcord} dCord={this.props.deliverycord} />
                 </div>}
                 {compressed && <div className="all-40 marginTop">{ pilotState && <UserInfo />}</div>}
                 <div className="all-40 marginTop" style={{ height: '67vh' }}>
@@ -88,3 +91,13 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     );
   }
 }
+
+function mapStateToProps(state) {
+  const { orderexpand, pickupcord, deliverycord } = state.get('home');
+  return {
+    orderexpand,
+    pickupcord,
+    deliverycord,
+  };
+}
+export default connect(mapStateToProps, { orderExpand, orderClose, pickupCord, deliveryCord })(HomePage);

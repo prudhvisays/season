@@ -44,17 +44,17 @@ export default class Tasks extends React.Component { //eslint-disable-line
   taskExpand() {
     const taskDiv = document.querySelector('.taskExpand');
     const listShow = document.querySelector('.listShow');
-    if (!this.state.expand) {
+    if (!this.props.orderBlock) {
       taskDiv.style.height = '98vh';
       listShow.style.opacity = '1';
       listShow.style.display = 'block';
-      this.setState({ expand: true });
+      this.props.orderClose(true);
       this.props.divTask();
     } else {
       taskDiv.style.height = '30vh';
       listShow.style.opacity = '0';
       listShow.style.display = 'none';
-      this.setState({ expand: false });
+      this.props.orderExpand(false);
       this.props.divTask();
     }
   }

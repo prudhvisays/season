@@ -1,5 +1,6 @@
 import React from 'react';
 import AddressBlock from './AddressBlock';
+import TabStyle from './TabStyle';
 import './tabStyle.css';
 
 export default class Tabs extends React.Component { //eslint-disable-line
@@ -32,11 +33,11 @@ export default class Tabs extends React.Component { //eslint-disable-line
   render() {
     return (
       <div className="line-boxShadow block-background" style={{ height: '67vh' }}>
-        <ul className="tab ink-flex" style={{ margin: 0 }}>
+        <TabStyle className="tab ink-flex" style={{ margin: 0 }}>
           <li><a className="tablinks" id="defaultOpen" onClick={(event) => { this.customTabs(event, 'London'); }}>Task Details</a></li>
           <li><a className="tablinks" onClick={(event) => { this.customTabs(event, 'Paris'); }}>Activity Timeline</a></li>
           <li><a className="tablinks" onClick={(event) => { this.customTabs(event, 'Tokyo'); }}>Path History</a></li>
-        </ul>
+        </TabStyle>
         <div id="London" className="tabcontent" style={{ fontSize: '0.7rem' }}>
           <div className="tab-scroll">
             <div className="ink-flex second-boxShadow tab-first-row">
