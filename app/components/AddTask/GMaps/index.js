@@ -1,13 +1,7 @@
 import React from 'react';
 import './MapStyle.css';
 
-let placeSearch;
 let searchBox;
-
-const options = [
-    { value: 'one', label: 'One' },
-    { value: 'two', label: 'Two' },
-];
 
 export default class GMaps extends React.Component { //eslint-disable-line
   constructor(props) {
@@ -20,10 +14,10 @@ export default class GMaps extends React.Component { //eslint-disable-line
     this.initAutocomplete();
   }
   initAutocomplete() {
-    searchBox = new google.maps.places.SearchBox(
+    searchBox = new google.maps.places.SearchBox( //eslint-disable-line
             document.getElementById('places-search'));
-    searchBox.addListener('places_changed', () => {
-                  this.searchBoxPlaces(searchBox);
+    searchBox.addListener('places_changed', () => { //eslint-disable-line
+      this.searchBoxPlaces(searchBox);
     });
   }
   geolocate() {
@@ -33,11 +27,11 @@ export default class GMaps extends React.Component { //eslint-disable-line
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-        const circle = new google.maps.Circle({
+        const circle = new google.maps.Circle({ //eslint-disable-line
           center: geolocation,
           radius: position.coords.accuracy,
         });
-        console.log(circle.getBounds());
+        console.log(circle.getBounds()); //eslint-disable-line
         searchBox.setBounds(circle.getBounds());
       });
     }
@@ -50,9 +44,9 @@ export default class GMaps extends React.Component { //eslint-disable-line
       lat = place.geometry.location.lat();
       lng = place.geometry.location.lng();
     });
-    this.props.pickupCord({lat, lng});
+    this.props.pickupCord({ lat, lng });
     if (places.length === 0) {
-      window.alert('We did not find any places matching that search!');
+      window.alert('We did not find any places matching that search!'); //eslint-disable-line
     }
   }
   render() {
