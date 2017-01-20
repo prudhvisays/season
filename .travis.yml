@@ -5,7 +5,10 @@ node_js:
   - 5
   - 4
 
-script: npm run build
+script:
+  - node ./internals/scripts/generate-templates-for-linting
+  - npm run test
+  - npm run build
 
 install:
   - npm i -g npm@latest
