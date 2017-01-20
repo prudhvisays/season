@@ -33,7 +33,7 @@ export default class TeamSelect extends React.Component { //eslint-disable-line
             jack
           </b>
         </Option>
-        <Option value="lucy">lucy</Option>
+        <Option value="Madhapur">lucy</Option>
         <Option value="disabled" disabled>disabled</Option>
         <Option value="yiminghe">yiminghe</Option>
       </Select>
