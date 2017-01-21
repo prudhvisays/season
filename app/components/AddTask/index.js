@@ -25,30 +25,33 @@ export default class AddTask extends React.Component { //eslint-disable-line
               </div>
             </div>
           </div>
-          <div className="all-100" style={{ height: '40vh' }}>
+          <div className="all-60" style={{ height: '40vh' }}>
             <div className="ink-flex">
-              <div className="all-60">
+              <div className="all-100">
                 <TaskTab pickupCord={pickupCord} deliveryCord={deliveryCord} />
               </div>
-              <div className="all-40">
-                <TaskMap pCord={pCord} dCord={dCord} />
+              <div className="all-100">
+                <div className="ink-flex" style={{ marginLeft: '1em' }}>
+                  <ul className="control unstyled ink-flex" style={{ margin: '0' }}>
+                    <li style={{ marginRight: '1em' }}><input type="radio" id="rb1" name="rb" value="Ace of Spades" /><label htmlFor="rb1" style={{ color: '#9099b7' }}>Auto</label></li>
+                    <li><input type="radio" id="rb2" name="rb" value="Queen of Diamonds" /><label htmlFor="rb2" style={{ color: '#9099b7' }}>Manual</label></li>
+                  </ul>
+                </div>
+                <div className="ink-flex vertical">
+                  <div style={{ margin: '0 0.3em' }}><TeamSelect /></div>
+                  <div style={{ margin: '0.2em 0.3em' }}><Select /></div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="all-60">
-            <div className="ink-flex" style={{ marginLeft: '1em' }}>
-              <ul className="control unstyled ink-flex" style={{ margin: '0' }}>
-                <li style={{ marginRight: '1em' }}><input type="radio" id="rb1" name="rb" value="Ace of Spades" /><label htmlFor="rb1" style={{ color: '#9099b7' }}>Auto</label></li>
-                <li><input type="radio" id="rb2" name="rb" value="Queen of Diamonds" /><label htmlFor="rb2" style={{ color: '#9099b7' }}>Manual</label></li>
-              </ul>
-            </div>
-            <div className="ink-flex vertical">
-              <div style={{ margin:'0 0.3em' }}><TeamSelect /></div>
-              <div style={{ margin: '0.2em 0.3em' }}><Select /></div>
             </div>
           </div>
           <div className="all-40">
-            <textarea type="text" placeholder="Notes" style={{ height: '20.5vh', width: '100%', border: '1px solid #51d4ff', color: '#aaa', fontSize: '0.8rem' }} />
+            <div className="ink-flex vertical">
+              <div className="title-desc ink-flex vertical">
+                <input type="text" placeholder="Title"></input>
+                <textarea type="text" placeholder="Description" style={{ height: '17.2vh', width: '100%', color: '#aaa', fontSize: '0.8rem' }} />
+              </div>
+              <TaskMap pCord={pCord} dCord={dCord} />
+            </div>
           </div>
         </div>
       </div>

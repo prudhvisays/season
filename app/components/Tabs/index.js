@@ -1,5 +1,6 @@
 import React from 'react';
 import AddressBlock from './AddressBlock';
+import Timeline from './Timeline';
 import TabStyle from './TabStyle';
 import './tabStyle.css';
 
@@ -83,6 +84,7 @@ export default class Tabs extends React.Component { //eslint-disable-line
           </div>
         </div>
         <div id="Paris" className="tabcontent">
+          <Timeline />
         </div>
         <div id="Tokyo" className="tabcontent">
         </div>

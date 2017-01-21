@@ -7,7 +7,7 @@ export default class TeamSelect extends React.Component { //eslint-disable-line
     super(props);
     this.state = {
       value: [],
-    }
+    };
     this.onChange = this.onChange.bind(this);
   }
 
