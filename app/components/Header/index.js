@@ -1,7 +1,9 @@
 import React from 'react';
 import HeaderStyle from './HeaderStyle';
+import { connect } from 'react-redux';
+import { logout } from '../../containers/AuthPage/actions';
 
-export default class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { addTask } = this.props;
     return (
@@ -14,9 +16,17 @@ export default class Header extends React.Component { // eslint-disable-line rea
           <a><i className="fa fa-address-card" aria-hidden="true"></i></a>
           <a><i className="fa fa-credit-card" aria-hidden="true"></i></a>
           <a><i className="fa fa-toggle-on" aria-hidden="true"></i></a>
-          <a><i className="fa fa-power-off" aria-hidden="true"></i></a>
+          <a onClick={this.props.Logout}><i className="fa fa-power-off" aria-hidden="true"></i></a>
         </div>
       </HeaderStyle>
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    Logout: () => { dispatch(logout()); },
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Header);

@@ -25,6 +25,15 @@ export default class AddTask extends React.Component { //eslint-disable-line
               </div>
             </div>
           </div>
+          <div className="all-40">
+            <div className="ink-flex vertical">
+              <div className="title-desc ink-flex vertical">
+                <input type="text" placeholder="Title" style={{ height: '5.9vh' }}></input>
+                <textarea type="text" placeholder="Description" style={{ height: '14.5vh', width: '100%', color: '#fff', fontSize: '0.8rem' }} />
+              </div>
+              <TaskMap pCord={pCord} dCord={dCord} />
+            </div>
+          </div>
           <div className="all-60" style={{ height: '40vh' }}>
             <div className="ink-flex">
               <div className="all-100">
@@ -42,15 +51,6 @@ export default class AddTask extends React.Component { //eslint-disable-line
                   <div style={{ margin: '0.2em 0.3em' }}><Select /></div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="all-40">
-            <div className="ink-flex vertical">
-              <div className="title-desc ink-flex vertical">
-                <input type="text" placeholder="Title"></input>
-                <textarea type="text" placeholder="Description" style={{ height: '17.2vh', width: '100%', color: '#aaa', fontSize: '0.8rem' }} />
-              </div>
-              <TaskMap pCord={pCord} dCord={dCord} />
             </div>
           </div>
         </div>

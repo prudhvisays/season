@@ -9,12 +9,14 @@
   margin-bottom: 0.3em;
 }
 
-.title-desc {
+/*.title-desc {
  border: 1px solid #51d4ff;
-}
+}*/
 .title-desc input{
- border-bottom: 1px solid #51d4ff;
- color: #aaa;
+ /*border-bottom: 1px solid #51d4ff;*/
+ color: #fff;
  font-size: 0.8rem;
- padding-left: 0.15em;
+}
+.title-desc input, textarea{
+ padding-left: 0.60em !important;
 }

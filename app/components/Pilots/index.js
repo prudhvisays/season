@@ -30,17 +30,26 @@ export default class Pilots extends React.Component { //eslint-disable-line
     super();
     this.state = {
       expand: false,
-      data:[],
+      data: [],
+      intervalId: '',
     };
-    setInterval(() =>
-            this.setState({
-                data: this.state.data.concat([boxMullerRandom()])
-            }), 5000);
     this.taskExpand = this.taskExpand.bind(this);
     this.detailedInfo = this.detailedInfo.bind(this);
+    this.timer = this.timer.bind(this);
   }
   componentDidMount() {
     let Datepicker = new Ink.UI.DatePicker( '.ink-datepicker' ); //eslint-disable-line
+    const intervalId = setInterval(() => this.timer, 3000);
+    this.setState({ intervalId });
+  }
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId);
+  }
+
+  timer() {
+    this.setState({
+      data: this.state.data.concat([boxMullerRandom()]),
+    });
   }
   taskExpand() {
     const taskDiv = document.querySelector('.TaskExpand');
@@ -67,10 +76,15 @@ export default class Pilots extends React.Component { //eslint-disable-line
     return (
       <div className="all-40 marginTop" style={{ height: '30vh' }}>
         <div className="boxShadow PilotLiner TaskExpand block-background" style={{ height: '30vh', position: 'relative', transition: 'height 0.5s linear 0s' }}>
-          <div className="pilot-block ink-flex" style={{ padding: '0.5em 0.8em' }}>
-            <div className="all-50" style={{ margin: 0, color: 'rgb(81, 212, 255)' }}>Pilots</div>
-            <div className="all-50" style={{ textAlign: 'right' }}>
-              <input type="text" className="ink-datepicker" data-format="d-m-Y" style={{ width: '92px', color: '#fff' }} />
+          <div className="orders-block ink-flex">
+            <div className="all-100" style={{ padding: '0.5em 0.8em' }}>
+              <div className="ink-flex">
+                <div className="all-100">
+                  <div className="team-search" style={{ width: '100%' }}>
+                    <input type="text" placeholder="Search Pilots" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div style={{ padding: '0.6em 0.8em' }}>
@@ -85,12 +99,12 @@ export default class Pilots extends React.Component { //eslint-disable-line
                 <PilotFeed tasksExpand={this.taskExpand} />
               </div>
             </div>
-            <div className="search" style={{ marginTop: '14px', width: '20.90em' }}>
+            {/* <div className="search" style={{ marginTop: '14px', width: '20.90em' }}>
               <div className="wrapper">
                 <i className="fa fa-search" aria-hidden="true"></i>
                 <input type="text" placeholder="Search" style={{ width: '100%', outline: 'none' }} />
               </div>
-            </div>
+            </div> */}
             <div className="ListShow" style={{ marginTop: '2.5em', display: 'none', opacity: '0', transition: 'all 0.5s linear 0s' }}>
               <div className="list-scroll">
                 <PilotCard detailedInfo={this.detailedInfo} pilotName={'Mark Heisenberg'} pilotStatus={'Online'} totalTask={'5'} completedTask={'2'} pilotDistance={'20'}/>

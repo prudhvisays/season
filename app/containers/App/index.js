@@ -21,7 +21,7 @@ export default class App extends React.PureComponent { // eslint-disable-line re
 
   render() {
     return (
-      <div>
+      <div style={{ background: 'rgb(31, 37, 61)', height: '100vh' }}>
         {React.Children.toArray(this.props.children)}
       </div>
     );

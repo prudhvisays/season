@@ -2,6 +2,9 @@ const initialState = {
   orderexpand: false,
   pickupcord: {},
   deliverycord: {},
+  data: {
+    ordersData: {},
+  },
 };
 
 function homeReducer(state = initialState, action) {
@@ -18,6 +21,12 @@ function homeReducer(state = initialState, action) {
     case 'DELIVERY_CORD':
       return { ...state,
         deliverycord: action.value };
+    case 'GET_ORDERS_SUCCESS':
+      return { ...state,
+        data: {
+          ...state.data,
+          ordersData: action.payload,
+        } };
     default:
       return state;
   }

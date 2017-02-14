@@ -11,7 +11,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { orderExpand, orderClose, pickupCord, deliveryCord } from './actions';
+import { orderExpand, orderClose, pickupCord, deliveryCord, getOrders } from './actions';
 import Map from '../../components/Map';
 import './HomeStyle.css';
 import Header from '../../components/Header';
@@ -24,6 +24,7 @@ import UserInfo from '../../components/UserInfo';
 import Tabs from '../../components/Tabs';
 import GroupBlock from '../../components/GroupBlock';
 import AddTask from '../../components/AddTask';
+import _ from 'lodash';
 
 class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
@@ -93,11 +94,52 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
 }
 
 function mapStateToProps(state) {
-  const { orderexpand, pickupcord, deliverycord } = state.get('home');
+  const { orderexpand, pickupcord, deliverycord, data } = state.get('home');
+//   const ordersGet = () => {
+//       getOrders();
+//   }
+//   const assignedOrders = () => {
+//     const ordersData = ordersGet();
+//     const Data = data.ordersData;
+//     _.filter(Data, (assign) => {
+//     return assign.status === 'ASSIGNED';
+//   });
+// };
+//   const unassignedOrders = () => {
+//     const ordersData = ordersGet();
+//     const Data = data.ordersData;
+//     _.filter(Data, (assign) => {
+//     return assign.status === 'UNASSIGNED';
+//   });
+// };
+//   const completedOrders = () => {
+//     const ordersData = ordersGet();
+//     const Data = data.ordersData;
+//     _.filter(Data, (assign) => {
+//     return assign.status === 'COMPLETED';
+//   });
+// };
+  // console.log(assignedOrders());
+  // console.log(unassignedOrders());
+  // console.log(completedOrders());
   return {
     orderexpand,
     pickupcord,
     deliverycord,
+    // assignedOrders,
+    // unassignedOrders,
+    // completedOrders,
+    data,
   };
 }
-export default connect(mapStateToProps, { orderExpand, orderClose, pickupCord, deliveryCord })(HomePage);
+
+export function mapDispatchToProps(dispatch) {
+  return {
+      orderExpand,
+      orderClose,
+      pickupCord,
+      deliveryCord,
+      getOrders: () => dispatch(getOrders()),
+    }
+  };
+export default connect(mapStateToProps, { orderExpand, orderClose, pickupCord, deliveryCord, getOrders })(HomePage);

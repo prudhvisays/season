@@ -3,7 +3,7 @@ import './MapStyle.css';
 
 let searchBox;
 
-export default class GMaps extends React.Component { //eslint-disable-line
+export default class DMaps extends React.Component { //eslint-disable-line
   constructor(props) {
     super(props);
     this.geolocate = this.geolocate.bind(this);
@@ -15,7 +15,7 @@ export default class GMaps extends React.Component { //eslint-disable-line
   }
   initAutocomplete() {
     searchBox = new google.maps.places.SearchBox( //eslint-disable-line
-            document.getElementById('places-search'));
+            document.querySelector('.place-search'));
     searchBox.addListener('places_changed', () => { //eslint-disable-line
       this.searchBoxPlaces(searchBox);
     });
@@ -37,23 +37,23 @@ export default class GMaps extends React.Component { //eslint-disable-line
     }
   }
   searchBoxPlaces(searchbox) {
-    let pLat;
-    let pLng;
+    let dLat;
+    let dLng;
     const places = searchbox.getPlaces();
     places.forEach((place) => {
-      pLat = place.geometry.location.lat();
-      pLng = place.geometry.location.lng();
+      dLat = place.geometry.location.lat();
+      dLng = place.geometry.location.lng();
     });
-    this.props.pickupCord({ pLat, pLng });
+    this.props.deliveryCord({ dLat, dLng });
     if (places.length === 0) {
       window.alert('We did not find any places matching that search!'); //eslint-disable-line
     }
   }
   render() {
     return (
-      <div id="locationField">
+      <div className="locField">
         <input
-          id="places-search"
+          className="place-search"
           placeholder="Search address"
           onFocus={this.geolocate} type="text"
         />

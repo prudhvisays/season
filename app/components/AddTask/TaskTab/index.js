@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskAddress from '../TaskAddress';
+import DeliveryAddress from '../DeliveryAddress';
 import TaskStyle from '../TaskStyle';
 
 export default class Tabs extends React.Component { //eslint-disable-line
@@ -41,6 +42,7 @@ export default class Tabs extends React.Component { //eslint-disable-line
           <TaskAddress pickupCord={pickupCord} deliveryCord={deliveryCord} />
         </div>
         <div id="add-delivery" className="task-content">
+          <DeliveryAddress deliveryCord={deliveryCord} />
         </div>
       </div>
     );

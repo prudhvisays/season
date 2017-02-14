@@ -1,26 +1,33 @@
 import React from 'react';
 import MapStyle from './MapStyle';
+import { AntPath } from 'leaflet-ant-path';
 
 let map;
 let newMarkerOne;
 let newMarkerTwo;
 let latlngs = [];
-let polyline;
+let antPolyline;
 
 export default class TaskMap extends React.Component { //eslint-disable-line
   constructor() {
     super();
     this.leafletMap = this.leafletMap.bind(this);
     this.marker = this.marker.bind(this);
+    this.markerTwo = this.markerTwo.bind(this);
+    this.polyLine = this.polyLine.bind(this);
   }
   componentDidMount() {
     this.leafletMap();
   }
   componentDidUpdate(prevProps){
-    const { lat, lng } = this.props.pCord;
+    const { pLat, pLng } = this.props.pCord;
+    const { dLat, dLng } = this.props.dCord;
     if (prevProps.pCord !== this.props.pCord) {
-          this.marker(lat, lng);
-          }
+        this.marker(pLat, pLng);
+      }
+    if (prevProps.dCord !== this.props.dCord) {
+      this.markerTwo(dLat, dLng)
+    }
 }
   leafletMap() {
     map = L.map('mapid', {
@@ -31,35 +38,39 @@ export default class TaskMap extends React.Component { //eslint-disable-line
       L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
       }).addTo(map)
-
-      this.marker();
   }
-  marker(lat = 17.4622, lng = 78.356) {
-    map.panTo(new L.LatLng(lat, lng), { animate: true, duration: 4.0 });
+
+  polyLine(latlngs) {
+    antPolyline = new L.Polyline.AntPath(latlngs);
+    antPolyline.addTo(map);
+    map.fitBounds(antPolyline.getBounds());
+  }
+
+  marker(pLat, pLng) {
+    map.panTo(new L.LatLng(pLat, pLng), { animate: true, duration: 4.0 });
        if (typeof (newMarkerOne) === 'undefined') {
-         newMarkerOne = new L.marker([lat, lng], { draggable: true});
+         newMarkerOne = new L.marker([pLat, pLng]);
          newMarkerOne.addTo(map);
-         latlngs[0] = [lat, lng];
+         latlngs[0] = [pLat, pLng];
        } else {
-         newMarkerOne.setLatLng([lat, lng]);
-         latlngs[0] = [lat, lng];
+         map.removeLayer(antPolyline);
+         newMarkerOne.setLatLng([pLat, pLng]);
+         latlngs[0] = [pLat, pLng];
+         this.polyLine(latlngs)
        }
-       if (typeof (newMarkerTwo) === 'undefined') {
-         newMarkerTwo = new L.marker([17.4622, 78.356], { draggable: true});
-         newMarkerTwo.addTo(map);
-         latlngs[1] = [17.4622, 78.356];
-       } else {
-         newMarkerTwo.setLatLng([17.4622, 78.356]);
-         latlngs[1] = [17.4622, 78.356];
-       }
-       console.log(latlngs);
-       if(latlngs[0] !== null && latlngs[1] !== null){
-         polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
-         map.fitBounds(polyline.getBounds());
-       }else{
-        polyline.setLatLngs(latlngs);
-        map.fitBounds(polyline.getBounds());
-       }
+  }
+  markerTwo(dLat, dLng) {
+    if (typeof (newMarkerTwo) === 'undefined') {
+      newMarkerTwo = new L.marker([dLat, dLng]);
+      newMarkerTwo.addTo(map);
+      latlngs[1] = [dLat, dLng];
+      this.polyLine(latlngs)
+    } else {
+      newMarkerTwo.setLatLng([dLat, dLng]);
+      latlngs[1] = [dLat, dLng];
+      map.removeLayer(antPolyline);
+      this.polyLine(latlngs)
+    }
   }
   render() {
     return (

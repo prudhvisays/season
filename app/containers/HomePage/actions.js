@@ -25,3 +25,25 @@ export function deliveryCord(value) {
     value,
   };
 }
+
+export function getOrders() {
+  console.log('hello');
+  return {
+    type: 'GET_ORDERS',
+  };
+}
+
+export function getOrdersSuccess(data) {
+  console.log(data);
+  return {
+    type: 'GET_ORDERS_SUCCESS',
+    payload: data,
+  };
+}
+
+export function getOrdersFailure(err) {
+  return {
+    type: 'GET_ORDERS_FAILURE',
+    payload: err,
+  };
+}

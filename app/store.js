@@ -7,6 +7,12 @@ import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
+import createLogger from 'redux-logger';
+
+const logger = createLogger({
+  // Ignore `CHANGE_FORM` actions in the logger, since they fire after every keystroke
+  predicate: (getState, action) => action.type !== 'CHANGE_FORM',
+});
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,6 +21,7 @@ export default function configureStore(initialState = {}, history) {
   // 1. sagaMiddleware: Makes redux-sagas work
   // 2. routerMiddleware: Syncs the location/URL path to the state
   const middlewares = [
+    logger,
     sagaMiddleware,
     routerMiddleware(history),
   ];
@@ -41,6 +48,7 @@ export default function configureStore(initialState = {}, history) {
   // Extensions
   store.runSaga = sagaMiddleware.run;
   store.asyncReducers = {}; // Async reducer registry
+  store.asyncSagas = {};
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */

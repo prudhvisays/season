@@ -24,18 +24,18 @@ export default class TeamSelect extends React.Component { //eslint-disable-line
         showSearch={false}
         onChange={(val) => { this.onChange(val); }}
       >
-        <Option value="jack">
+        <Option value="Kondapur">
           <b
             style={{
               color: 'red',
             }}
           >
-            jack
+            Kondapur
           </b>
         </Option>
-        <Option value="Madhapur">lucy</Option>
+        <Option value="Madhapur">Madhapur</Option>
         <Option value="disabled" disabled>disabled</Option>
-        <Option value="yiminghe">yiminghe</Option>
+        <Option value="Gachibowli">Gachibowli</Option>
       </Select>
     );
   }

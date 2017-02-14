@@ -388,3 +388,28 @@ a:hover{
 .team-search > input[type=text]:focus {
 
 }
+
+.closeFeed {
+  background: rgb(245, 37, 151);
+  height: 20px;
+  width: 100%;
+  border-bottom-right-radius:0.2em;
+  border-bottom-left-radius:0.2em;
+  font-size: 0.65em;
+  padding: 0.2em 0.8em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.closeTag {
+margin: 0 1em;
+position: relative;
+top: -2px;
+}
+
+.closeTag a{
+  text-decoration: none;
+}
+.closeTag a:hover{
+  background: rgb(235, 37, 151);
+}

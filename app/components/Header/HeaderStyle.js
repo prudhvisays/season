@@ -11,7 +11,7 @@ const HeaderStyle = styled.div`
     padding: 10px;
     display: block;
     transition: all 0.3s ease;
-    color: rgb(31, 37, 61);
+    color: #FAFAFA;
     font-size: 1.5rem;
     position: relative;
   }
