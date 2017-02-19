@@ -40,6 +40,25 @@ export default function createRoutes(store) {
       },
     },
     {
+      path: '/franchise',
+      name: 'franchise',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/Franchise/reducer'),
+          System.import('containers/Franchise'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, component]) => {
+          injectReducer('franchise', reducer.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+    {
       path: '/login',
       name: 'login',
       getComponent(nextState, cb) {

@@ -3,17 +3,18 @@ import Score from '../Score';
 
 export default class PilotFeed extends React.Component { //eslint-disable-line
   render() {
-    const { tasksExpand } = this.props;
+    const { tasksExpand, stats } = this.props;
+    const { pilotStats } = stats;
     return (
       <div className="ink-flex pilot-feed-boxShadow" style={{ fontSize: '1rem', position: 'relative' }}>
-        <div className="all-33" onClick={tasksExpand}>
-          <Score score={21} subTitle={'Active'} />
+        <div className="all-33">
+          <Score score={pilotStats.available} subTitle={'Active'} />
         </div>
-        <div className="all-33" onClick={tasksExpand}>
-          <Score score={26} subTitle={'Offline'} />
+        <div className="all-33">
+          <Score score={pilotStats.offline} subTitle={'Offline'} />
         </div>
-        <div className="all-33" onClick={tasksExpand}>
-          <Score score={47} subTitle={'Total'} />
+        <div className="all-33">
+          <Score score={pilotStats.total} subTitle={'Total'} />
         </div>
       </div>
     );

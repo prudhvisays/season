@@ -1,21 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AuthStyle from './AuthStyle';
-import backgrndStyle from './backgrndStyle';
+import BackgrndStyle from './BackgrndStyle';
 import AuthForm from '../../components/AuthForm';
 import { loginRequest } from './actions';
+import Logo from './logo.gif';
 
 class LoginPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { formState } = this.props.data;
     return (
-      <backgrndStyle>
+      <BackgrndStyle>
         <div className="ink-flex push-center">
           <AuthStyle className="all-50">
             <AuthForm data={formState} onSubmit={this.props.login} />
           </AuthStyle>
         </div>
-      </backgrndStyle>
+      </BackgrndStyle>
     );
   }
 }

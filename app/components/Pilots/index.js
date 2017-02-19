@@ -2,6 +2,7 @@ import React from 'react';
 import PilotFeed from '../PilotFeed';
 import PilotCard from '../PilotCard';
 import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
+import classNames from 'classnames';
 
 function boxMullerRandom() {
     let phase = false,
@@ -73,10 +74,11 @@ export default class Pilots extends React.Component { //eslint-disable-line
   }
   render() {
     const { data } = this.state;
+    const { stats } = this.props;
     return (
       <div className="all-40 marginTop" style={{ height: '30vh' }}>
-        <div className="boxShadow PilotLiner TaskExpand block-background" style={{ height: '30vh', position: 'relative', transition: 'height 0.5s linear 0s' }}>
-          <div className="orders-block ink-flex">
+        <div className={classNames('boxShadow', 'TaskExpand', 'block-background', 'PilotLiner', { pilotProgress: stats.request })} style={{ height: '30vh', position: 'relative', transition: 'height 0.5s linear 0s', overflow: 'hidden' }}>
+          <div className={classNames('orders-block', 'ink-flex', { pilotIndeterminate: stats.request })}>
             <div className="all-100" style={{ padding: '0.5em 0.8em' }}>
               <div className="ink-flex">
                 <div className="all-100">
@@ -96,7 +98,7 @@ export default class Pilots extends React.Component { //eslint-disable-line
                 </Sparklines>
               </div>
               <div className="all-100">
-                <PilotFeed tasksExpand={this.taskExpand} />
+                <PilotFeed tasksExpand={this.taskExpand} stats={stats} />
               </div>
             </div>
             {/* <div className="search" style={{ marginTop: '14px', width: '20.90em' }}>

@@ -12,6 +12,7 @@
  */
 
 import React from 'react';
+import Header from '../../components/Header';
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -22,6 +23,7 @@ export default class App extends React.PureComponent { // eslint-disable-line re
   render() {
     return (
       <div style={{ background: 'rgb(31, 37, 61)', height: '100vh' }}>
+        <Header addTask={this.addTask} />
         {React.Children.toArray(this.props.children)}
       </div>
     );

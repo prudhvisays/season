@@ -1,5 +1,6 @@
 import React from 'react';
 import MapStyle from './MapStyle';
+import L from 'leaflet';
 import { AntPath } from 'leaflet-ant-path';
 
 let map;
@@ -23,7 +24,7 @@ export default class TaskMap extends React.Component { //eslint-disable-line
     const { pLat, pLng } = this.props.pCord;
     const { dLat, dLng } = this.props.dCord;
     if (prevProps.pCord !== this.props.pCord) {
-        this.marker(pLat, pLng);
+      this.marker(pLat, pLng);
       }
     if (prevProps.dCord !== this.props.dCord) {
       this.markerTwo(dLat, dLng)

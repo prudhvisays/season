@@ -1,7 +1,9 @@
 import React from 'react';
 import Feed from '../Feed';
 import TripCard from '../TripCard';
+import Search from '../Search';
 import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
+import classNames from 'classnames';
 
 function boxMullerRandom() {
     let phase = false,
@@ -36,6 +38,8 @@ export default class Tasks extends React.Component { //eslint-disable-line
     this.detailedInfo = this.detailedInfo.bind(this);
     this.loadOrders = this.loadOrders.bind(this);
     this.timer = this.timer.bind(this);
+    this.searchText = this.searchText.bind(this);
+    this.emitSearch = this.emitSearch.bind(this);
   }
   componentDidMount() {
     let datepicker = new Ink.UI.DatePicker( '.ink-datepicker' ); //eslint-disable-line
@@ -51,6 +55,7 @@ export default class Tasks extends React.Component { //eslint-disable-line
       data: this.state.data.concat([boxMullerRandom()])
     });
   }
+
   taskExpand() {
     const taskDiv = document.querySelector('.taskExpand');
     const listShow = document.querySelector('.listShow');
@@ -74,17 +79,24 @@ export default class Tasks extends React.Component { //eslint-disable-line
   loadOrders() {
     console.log(this.props.assignedOrders());
   }
+  searchText(e) {
+    this.emitSearch(e.target.value);
+  }
+  emitSearch(newSearch) {
+    this.props.onSearch(newSearch);
+  }
   render() {
     const { expand, data } = this.state;
+    const { stats } = this.props;
     return (
       <div className="all-40 marginTop" style={{ height: '30vh' }}>
-        <div className="boxShadow liner taskExpand block-background" style={{ height: '30vh', position: 'relative', transition: 'height 0.5s linear 0s' }}>
-          <div className="orders-block ink-flex">
+        <div className={classNames('boxShadow liner tasksExpand block-background', { progressLiner: stats.request })} style={{ height: '30vh', position: 'relative', transition: 'height 0.5s linear 0s', overflow: 'hidden' }}>
+          <div className={classNames('orders-block', 'ink-flex', { indeterminate: stats.request })}>
             <div className="all-100" style={{ padding: '0.5em 0.8em' }}>
               <div className="ink-flex">
                 <div className="all-70">
                   <div className="team-search" style={{ width: '100%' }}>
-                    <input type="text" placeholder="Search Orders" />
+                    <Search placeHolder={'search Orders'} searchText={this.searchText} />
                   </div>
                 </div>
                 <div className="all-30" style={{ textAlign: 'right' }}>
@@ -102,7 +114,7 @@ export default class Tasks extends React.Component { //eslint-disable-line
                 </Sparklines>
               </div>
               <div className="all-100" style={{ position: 'relative', zIndex: '1', background: '#394264' }}>
-                <Feed tasksExpand={this.taskExpand} />
+                <Feed tasksExpand={this.taskExpand} stats={stats}/>
               </div>
               <div className="all-100 closeTag">
                 <a className="ink-flex push-right closeFeed" onClick={this.loadOrders}>Close</a>

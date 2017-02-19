@@ -4,6 +4,10 @@ const HeaderStyle = styled.div`
   height: 100%;
   position: fixed;
   width: 50px;
+  background-color: #394264;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  -moz-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
   div{
     margin-top: 6em;
   }
@@ -27,6 +31,7 @@ const HeaderStyle = styled.div`
   a:hover {
     color: rgb(81, 212, 255);
   }
+
 `;
 
 export default HeaderStyle;

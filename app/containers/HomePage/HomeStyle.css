@@ -83,7 +83,7 @@ h6, h3 {
   position: relative;
 }
 
-.liner::before{
+.liner::after{
  content : "";
  position: absolute;
  top: 0;
@@ -92,7 +92,16 @@ h6, h3 {
  width: 10%;  /* or 100px */
  border-left: 0.2em solid rgb(245, 37, 151);
 }
-.PilotLiner::before{
+.progressLiner::before{
+ content : "";
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 42px;
+ width: 100%;  /* or 100px */
+ border-bottom: 0.2em solid #F06292;
+}
+.PilotLiner::after{
  content : "";
  position: absolute;
  top: 0;
@@ -100,6 +109,15 @@ h6, h3 {
  height: 42px;
  width: 10%;  /* or 100px */
  border-left: 0.2em solid rgb(81, 212, 255);
+}
+.pilotProgress::before{
+ content : "";
+ position: absolute;
+ top: 7px;
+ left: 0;
+ height: 35px;
+ width: 100%;  /* or 100px */
+ border-bottom: 0.2em solid rgb(81, 212, 255);
 }
 .player {
   list-style-type: none;
@@ -109,11 +127,14 @@ h6, h3 {
 .player-list{
   display: block;
   line-height: 2.8em;
-  border-bottom: 1px solid #1f253d;
+  background: #394264;
   transform: translateY(0);
   font-size: 1em;
+  margin-bottom: 0.5em;
+  box-shadow: 1px 2px 3px #394264;
 	-webkit-transition: all .2s;
 	transition: all .2s;
+  padding-right: 1em;
 }
 .player-list:hover{
   background: #50597b;
@@ -254,7 +275,7 @@ a:hover{
   box-shadow: 0 0 10px rgba(0,0,0,0.2)
 }
 
-.time-length, .player, .player-list {
+.time-length, .player {
   margin: 0;
   padding: 0;
 }
@@ -413,3 +434,117 @@ top: -2px;
 .closeTag a:hover{
   background: rgb(235, 37, 151);
 }
+
+
+.progressLiner::before{
+ content : "";
+ position: absolute;
+ top: 7px;
+ left: 0;
+ height: 35px;
+ width: 100%;  /* or 100px */
+ border-bottom: 0.2em solid #F06292;
+}
+.pilotProgress::before{
+ content : "";
+ position: absolute;
+ top: 7px;
+ left: 0;
+ height: 35px;
+ width: 100%;  /* or 100px */
+ border-bottom: 0.2em solid rgb(81, 212, 255);
+}
+.indeterminate{
+  overflow: hidden;
+}
+/* Progress Bar */
+    .indeterminate:before {
+      content : "";
+      position: absolute;
+      top: 7px;
+      left: 0;
+      height: 35px;
+      border-bottom: 0.2em solid rgb(245, 37, 151);
+      will-change: left, right;
+      -webkit-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+              animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite; }
+    .indeterminate:after {
+      content : "";
+      position: absolute;
+      top: 7px;
+      left: 0;
+      height: 35px;
+      border-bottom: 0.2em solid rgb(245, 37, 151);
+      will-change: left, right;
+      -webkit-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+              animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+      -webkit-animation-delay: 1.15s;
+              animation-delay: 1.15s; }
+
+/* Pilot Progress Bar */
+    .pilotIndeterminate:before {
+      content : "";
+      position: absolute;
+      top: 7px;
+      left: 0;
+      bottom: 0;
+      height: 35px;
+      border-bottom: 0.2em solid #2196F3;
+      will-change: left, right;
+      -webkit-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+              animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite; }
+    .pilotIndeterminate:after {
+      content : "";
+      position: absolute;
+      top: 7px;
+      left: 0;
+      bottom: 0;
+      height: 35px;
+      border-bottom: 0.2em solid #2196F3;
+      will-change: left, right;
+      -webkit-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+              animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+      -webkit-animation-delay: 1s;
+              animation-delay: 1s; }
+
+
+  @-webkit-keyframes indeterminate {
+    0% {
+      left: -35%;
+      right: 100%; }
+    60% {
+      left: 100%;
+      right: -90%; }
+    100% {
+      left: 100%;
+      right: -90%; } }
+  @keyframes indeterminate {
+    0% {
+      left: -35%;
+      right: 100%; }
+    60% {
+      left: 100%;
+      right: -90%; }
+    100% {
+      left: 100%;
+      right: -90%; } }
+  @-webkit-keyframes indeterminate-short {
+    0% {
+      left: -200%;
+      right: 100%; }
+    60% {
+      left: 107%;
+      right: -8%; }
+    100% {
+      left: 107%;
+      right: -8%; } }
+  @keyframes indeterminate-short {
+    0% {
+      left: -200%;
+      right: 100%; }
+    60% {
+      left: 107%;
+      right: -8%; }
+    100% {
+      left: 107%;
+      right: -8%; } }

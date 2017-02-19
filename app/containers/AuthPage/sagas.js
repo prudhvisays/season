@@ -5,18 +5,20 @@ import { browserHistory } from 'react-router';
 import auth from '../../Api/Auth';
 
 export function* authorize({ username, password, isRegistering }) {
-  yield put({ type: 'SENDING_REQUEST', sending: true })
+  yield put({ type: 'SENDING_REQUEST', sending: true });
 
   try {
-    let response = yield call(auth.login, username, password);
+    const response = yield call(auth.login, username, password);
     console.log(response);
     return response;
   } catch (error) {
     console.log('error bhaiya');
-    yield put({ type: 'REQUEST_ERROR', error: error.message })
-    return false
+    if (error.response) {
+      yield put({ type: 'REQUEST_ERROR', error: error.response.data });
+    }
+    return false;
   } finally {
-    yield put({ type: 'SENDING_REQUEST', sending: false })
+    yield put({ type: 'SENDING_REQUEST', sending: false });
   }
 }
 

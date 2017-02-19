@@ -11,7 +11,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { orderExpand, orderClose, pickupCord, deliveryCord, getOrders } from './actions';
+import { orderExpand, orderClose, pickupCord, deliveryCord, getStats, onSearch, getTeams, getTeamSales } from './actions';
 import Map from '../../components/Map';
 import './HomeStyle.css';
 import Header from '../../components/Header';
@@ -42,6 +42,10 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
     this.groupDisplay = this.groupDisplay.bind(this);
     this.addTask = this.addTask.bind(this);
   }
+  componentDidMount() {
+    this.props.getStats();
+    this.props.getTeams();
+  }
   divTask() {
     this.setState({ compressed: !this.state.compressed });
   }
@@ -60,16 +64,23 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
   }
   render() {
     const { compressed, pilotState, orderDetails, groupDisplay, addTask } = this.state;
+    const { stats } = this.props;
     return (
       <section style={{ background: '#1f253d', color: '#fff' }}>
-        <Header addTask={this.addTask} />
         <div className="ink-grid" style={{ padding: 0, margin: '0 0 0 3.5em' }}>
           <div className="column-group quarter-horizontal-gutters">
             <div className="all-75">
               <div className="column-group quarter-horizontal-gutters margin">
                 <Targets />
-                <Tasks divTask={this.divTask} orderDetails={this.orderDetails} orderBlock={this.props.orderexpand} {...this.props} />
-                <Pilots divPilot={this.divPilot} groupDisplay={this.groupDisplay} />
+                <Tasks divTask={this.divTask}
+                  orderDetails={this.orderDetails}
+                  orderBlock={this.props.orderexpand}
+                  getStats={this.props.getStats}
+                  searchText={this.props.searchText}
+                  stats={this.props.stats}
+                  {...this.props}
+                />
+                <Pilots divPilot={this.divPilot} groupDisplay={this.groupDisplay} stats={stats} />
                 { !addTask ? <div ref={(c) => { this.compress = c; }} className={classnames('marginTop', { 'all-60': !compressed, 'all-20': compressed })} style={{ height: '67vh' }}>
                   <Ranking compressed={compressed} />
                 </div> : <div className="all-60 marginTop" style={{ height: '67vh' }}>
@@ -94,7 +105,8 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
 }
 
 function mapStateToProps(state) {
-  const { orderexpand, pickupcord, deliverycord, data } = state.get('home');
+  const { orderexpand, pickupcord, deliverycord, stats, searchText } = state.get('home');
+  const homeData = state.get('home');
 //   const ordersGet = () => {
 //       getOrders();
 //   }
@@ -129,17 +141,22 @@ function mapStateToProps(state) {
     // assignedOrders,
     // unassignedOrders,
     // completedOrders,
-    data,
+    stats,
+    searchText,
+    homeData,
   };
 }
 
 export function mapDispatchToProps(dispatch) {
   return {
-      orderExpand,
-      orderClose,
-      pickupCord,
-      deliveryCord,
-      getOrders: () => dispatch(getOrders()),
-    }
+    orderExpand: (value) => { dispatch(orderExpand(value)); },
+    orderClose: (value) => { dispatch(orderClose(value)); },
+    pickupCord: (value) => { dispatch(pickupCord(value)); },
+    deliveryCord: (value) => { dispatch(deliveryCord(value)); },
+    getStats: () => { dispatch(getStats()); },
+    onSearch: (searchText) => { dispatch(onSearch(searchText)); },
+    getTeams: () => { dispatch(getTeams()); },
+    getTeamSales: (data) => { dispatch(getTeamSales(data)); },
   };
-export default connect(mapStateToProps, { orderExpand, orderClose, pickupCord, deliveryCord, getOrders })(HomePage);
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

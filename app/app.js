@@ -30,6 +30,9 @@ import 'sanitize.css/sanitize.css';
 import './Ink/dist/css/ink.css';
 import './Ink/dist/css/ink-ie.css';
 import './Ink/dist/css/ink-flex.min.css';
+import '../libs/leaflet.css';
+import '../Leaflet.draw-master/src/leaflet.draw.css';
+
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
 // Optionally, this could be changed to leverage a created history
@@ -52,7 +55,10 @@ const rootRoute = {
   component: App,
   childRoutes: createRoutes(store),
 };
-
+import setAuthorizationToken from './Api/Token';
+if (localStorage.token) {
+  setAuthorizationToken(localStorage.token);
+}
 
 const render = (translatedMessages) => {
   ReactDOM.render(

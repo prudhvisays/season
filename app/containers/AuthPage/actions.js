@@ -1,5 +1,4 @@
 export function changeForm(newFormState) {
-  console.log(newFormState);
   return {
     type: 'CHANGE_FORM',
     newFormState,
