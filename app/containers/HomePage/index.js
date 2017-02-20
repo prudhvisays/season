@@ -11,7 +11,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { orderExpand, orderClose, pickupCord, deliveryCord, getStats, onSearch, getTeams, getTeamSales } from './actions';
+import * as actions from './actions';
 import Map from '../../components/Map';
 import './HomeStyle.css';
 import Header from '../../components/Header';
@@ -25,6 +25,7 @@ import Tabs from '../../components/Tabs';
 import GroupBlock from '../../components/GroupBlock';
 import AddTask from '../../components/AddTask';
 import _ from 'lodash';
+import checkAuth from '../checkAuth';
 
 class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
@@ -81,10 +82,19 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
                   {...this.props}
                 />
                 <Pilots divPilot={this.divPilot} groupDisplay={this.groupDisplay} stats={stats} />
-                { !addTask ? <div ref={(c) => { this.compress = c; }} className={classnames('marginTop', { 'all-60': !compressed, 'all-20': compressed })} style={{ height: '67vh' }}>
+                { addTask ? <div ref={(c) => { this.compress = c; }} className={classnames('marginTop', { 'all-60': !compressed, 'all-20': compressed })} style={{ height: '67vh' }}>
                   <Ranking compressed={compressed} />
                 </div> : <div className="all-60 marginTop" style={{ height: '67vh' }}>
-                  <AddTask pickupCord={this.props.pickupCord} deliveryCord={this.props.deliveryCord} pCord={this.props.pickupcord} dCord={this.props.deliverycord} />
+                  <AddTask
+                    pickupCord={this.props.pickupCord}
+                    deliveryCord={this.props.deliveryCord}
+                    pCord={this.props.pickupcord}
+                    dCord={this.props.deliverycord}
+                    pickupChange={this.props.pickupChange}
+                    stateAddTask={this.props.addTask}
+                    addTaskInfo={this.props.addTaskInfo}
+                    deliveryChange={this.props.deliveryChange}
+                  />
                 </div>}
                 {compressed && <div className="all-40 marginTop">{ pilotState && <UserInfo />}</div>}
                 <div className="all-40 marginTop" style={{ height: '67vh' }}>
@@ -105,7 +115,7 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
 }
 
 function mapStateToProps(state) {
-  const { orderexpand, pickupcord, deliverycord, stats, searchText } = state.get('home');
+  const { orderexpand, pickupcord, deliverycord, stats, searchText, addTask } = state.get('home');
   const homeData = state.get('home');
 //   const ordersGet = () => {
 //       getOrders();
@@ -144,19 +154,23 @@ function mapStateToProps(state) {
     stats,
     searchText,
     homeData,
+    addTask,
   };
 }
 
 export function mapDispatchToProps(dispatch) {
   return {
-    orderExpand: (value) => { dispatch(orderExpand(value)); },
-    orderClose: (value) => { dispatch(orderClose(value)); },
-    pickupCord: (value) => { dispatch(pickupCord(value)); },
-    deliveryCord: (value) => { dispatch(deliveryCord(value)); },
-    getStats: () => { dispatch(getStats()); },
-    onSearch: (searchText) => { dispatch(onSearch(searchText)); },
-    getTeams: () => { dispatch(getTeams()); },
-    getTeamSales: (data) => { dispatch(getTeamSales(data)); },
+    orderExpand: (value) => { dispatch(actions.orderExpand(value)); },
+    orderClose: (value) => { dispatch(actions.orderClose(value)); },
+    pickupCord: (value) => { dispatch(actions.pickupCord(value)); },
+    deliveryCord: (value) => { dispatch(actions.deliveryCord(value)); },
+    getStats: () => { dispatch(actions.getStats()); },
+    onSearch: (searchText) => { dispatch(actions.onSearch(searchText)); },
+    getTeams: () => { dispatch(actions.getTeams()); },
+    getTeamSales: (data) => { dispatch(actions.getTeamSales(data)); },
+    pickupChange: (data) => { dispatch(actions.pickupChange(data)); },
+    deliveryChange: (data) => { dispatch(actions.deliveryChange(data)); },
+    addTaskInfo: (data) => { dispatch(actions.addTaskInfo(data)); },
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

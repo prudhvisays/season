@@ -6,6 +6,8 @@ const initialState = {
     name: '',
     description: '',
   },
+  pilots: [],
+  request: false,
 };
 
 function franchiseReducer(state = initialState, action) {
@@ -16,11 +18,7 @@ function franchiseReducer(state = initialState, action) {
         franchiseCord: action.payload,
       };
     case 'POST_GEO_FENCE':
-      return {
-        ...state,
-        franchiseGeoFence: action.payload,
-        reqGeoFence: !state.reqGeoFence,
-      };
+      return geoFence(state, action);
     case 'ON_FORM_CHANGE':
       return {
         ...state,
@@ -31,4 +29,20 @@ function franchiseReducer(state = initialState, action) {
   }
 }
 
+function geoFence(state, action) {
+  const cords = action.payload;
+  let geoCords = [];
+  if (cords[0] != null) {
+    cords[0].map((cord) => geoCords.push([cord.lat, cord.lng]));
+    console.table(geoCords);
+  } else {
+    geoCords = [];
+  }
+
+  return {
+    ...state,
+    franchiseGeoFence: geoCords,
+    reqGeoFence: !state.reqGeoFence,
+  };
+}
 export default franchiseReducer;

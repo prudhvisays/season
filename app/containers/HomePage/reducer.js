@@ -11,7 +11,20 @@ const initialState = {
   searchText: '',
   teamsPanel: {
     teams: {},
+    teamSales: {},
+    teamCustomers: {},
+    error: '',
     request: false,
+  },
+  addTask: {
+    pickup: {},
+    delivery: {},
+    taskInfo:{
+    title: '',
+    description: '',
+    team: '',
+    pilots: [],
+  },
   },
 };
 
@@ -68,9 +81,58 @@ function homeReducer(state = initialState, action) {
       return { ...state,
         teamsPanel: {
           ...state.teamsPanel,
-          request: action.payload,
+          error: action.payload,
         },
       };
+    case 'GET_TEAM_SALES_SUCCESS':
+      return { ...state,
+      teamsPanel: {
+        ...state.teamsPanel,
+        teamSales: action.payload,
+      },
+    }
+    case 'GET_TEAM_SALES_FAILURE':
+      return { ...state,
+      teamsPanel: {
+        ...state.teamsPanel,
+        error: action.payload,
+      },
+    }
+    case 'GET_TEAM_CUSTOMERS_SUCCESS':
+        return { ...state,
+        teamsPanel: {
+          ...state.teamsPanel,
+          teamCustomers: action.payload,
+        },
+      };
+    case 'GET_TEAM_CUSTOMERS_FAILURE':
+      return { ...state,
+        teamsPanel: {
+          ...state.teamsPanel,
+          error: action.payload,
+        },
+      };
+    case 'PICKUP_CHANGE':
+      return { ...state,
+        addTask: {
+          ...state.addTask,
+          pickup: action.payload,
+        },
+      };
+    case 'DELIVERY_CHANGE':
+      return { ...state,
+      addTask: {
+        ...state.addTask,
+        delivery: action.payload,
+      },
+    };
+    case 'ADD_TASK_INFO':
+    return { ...state,
+      addTask: {
+        ...state.addTask,
+        taskInfo: action.payload,
+      },
+    };
     default:
       return state;
   }

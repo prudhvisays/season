@@ -5,6 +5,9 @@ import FranchiseForm from '../../components/FranchiseForm';
 import * as actions from './actions';
 
 class Franchise extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
+    this.props.getPilots();
+  }
   render() {
     return (
       <section style={{ background: '#1f253d', color: '#fff' }}>
@@ -17,6 +20,8 @@ class Franchise extends React.Component { // eslint-disable-line react/prefer-st
                 StateReqGeoFence={this.props.reqGeoFence}
                 newFormState={this.props.newFormState}
                 onFormChange={this.props.onFormChange}
+                submitFranchiseData={this.props.submitFranchiseData}
+                statefranchiseCord={this.props.franchiseCord}
               />
             </div>
             <div className="all-50">
@@ -47,6 +52,8 @@ function mapDispatchToProps(dispatch) {
     postFrancCord: (data) => { dispatch(actions.postFrancCord(data)); },
     postGeoFence: (data) => { dispatch(actions.postGeoFence(data)); },
     onFormChange: (data) => { dispatch(actions.onFormChange(data)); },
+    getPilots: (data) => { dispatch(actions.getPilots(data)); },
+    submitFranchiseData: (data) => { dispatch(actions.submitFranchiseData(data)); },
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Franchise);

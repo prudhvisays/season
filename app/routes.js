@@ -45,13 +45,15 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           System.import('containers/Franchise/reducer'),
+          System.import('containers/Franchise/sagas'),
           System.import('containers/Franchise'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, component]) => {
+        importModules.then(([reducer, sagas, component]) => {
           injectReducer('franchise', reducer.default);
+          injectSagas(sagas.default);
           renderRoute(component);
         });
 

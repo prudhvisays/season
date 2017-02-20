@@ -24,16 +24,19 @@ export default class FranchiseMap extends React.Component { //eslint-disable-lin
     }
   }
   leafletMap() {
-    map = L.map('francMap', {
-      center: [17.4622, 78.356],
-      zoom: 13,
-    });
+    // map = L.map('francMap', {
+    //   center: [17.4622, 78.356],
+    //   zoom: 13,
+    // });
+    //
+    //   L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicHJ1ZGh2aXNheXMiLCJhIjoiY2l4aWxnM2xoMDAxMzJ3bzB2ajlpbzJ2eCJ9.L4CdTG9cSB-ADVYQXbH-hw', {
+    //     maxZoom: 18,
+    //   }).addTo(map);
 
-      L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicHJ1ZGh2aXNheXMiLCJhIjoiY2l4aWxnM2xoMDAxMzJ3bzB2ajlpbzJ2eCJ9.L4CdTG9cSB-ADVYQXbH-hw', {
-        maxZoom: 18,
-      }).addTo(map)
-
-    this.drawMap()
+       const cloudmadeUrl = 'https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicHJ1ZGh2aXNheXMiLCJhIjoiY2l4aWxnM2xoMDAxMzJ3bzB2ajlpbzJ2eCJ9.L4CdTG9cSB-ADVYQXbH-hw';
+       const cloudmade = new L.TileLayer(cloudmadeUrl, {maxZoom: 18});
+        map = new L.Map('francMap', {layers: [cloudmade], center: new L.LatLng(17.4622, 78.356), zoom: 15 });
+    this.drawMap();
   }
   drawMap() {
     var LeafIcon = L.Icon.extend({
@@ -118,7 +121,7 @@ export default class FranchiseMap extends React.Component { //eslint-disable-lin
   }
   render() {
     return (
-      <FrancMapStyle id="francMap"></FrancMapStyle>
+      <FrancMapStyle id="francMap" style={{ height: '100vh' }}></FrancMapStyle>
     );
   }
 }

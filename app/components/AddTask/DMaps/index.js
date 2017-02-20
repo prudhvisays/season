@@ -9,6 +9,7 @@ export default class DMaps extends React.Component { //eslint-disable-line
     this.geolocate = this.geolocate.bind(this);
     this.initAutocomplete = this.initAutocomplete.bind(this);
     this.searchBoxPlaces = this.searchBoxPlaces.bind(this);
+    this.emitChange = this.emitChange.bind(this);
   }
   componentDidMount() {
     this.initAutocomplete();
@@ -39,15 +40,22 @@ export default class DMaps extends React.Component { //eslint-disable-line
   searchBoxPlaces(searchbox) {
     let dLat;
     let dLng;
+    let address = '';
     const places = searchbox.getPlaces();
     places.forEach((place) => {
       dLat = place.geometry.location.lat();
       dLng = place.geometry.location.lng();
+      address = place.formatted_address;
     });
+    const { delivery } = this.props.stateAddTask;
     this.props.deliveryCord({ dLat, dLng });
+    this.emitChange({ ...delivery, to_address: address });
     if (places.length === 0) {
       window.alert('We did not find any places matching that search!'); //eslint-disable-line
     }
+  }
+  emitChange(newFormState) {
+    this.props.deliveryChange(newFormState);
   }
   render() {
     return (

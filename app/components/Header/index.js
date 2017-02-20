@@ -27,7 +27,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
 
 function mapDispatchToProps(dispatch) {
   return {
-    Logout: () => { dispatch(logout()); },
+    Logout: () => { dispatch(logout()); }
   };
 }
 

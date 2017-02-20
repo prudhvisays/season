@@ -7,8 +7,25 @@ import Select from './Select';
 import TeamSelect from './TeamSelect';
 
 export default class AddTask extends React.Component { //eslint-disable-line
+constructor(props) {
+  super(props);
+  this.titleChange = this.titleChange.bind(this);
+  this.desChange = this.desChange.bind(this);
+  this.emitChange = this.emitChange.bind(this);
+}
+titleChange(e) {
+  const { addTaskInfo } = this.props.stateAddTask;
+  this.emitChange({ ...addTaskInfo, title: e.target.value });
+}
+desChange(e) {
+  const { taskInfo } = this.props.stateAddTask;
+  this.emitChange({ ...taskInfo, description: e.target.value });
+}
+emitChange(newFormState) {
+  this.props.addTaskInfo(newFormState);
+}
   render() {
-    const { pickupCord, deliveryCord, pCord, dCord } = this.props;
+    const { pickupCord, deliveryCord, pCord, dCord, pickupChange, stateAddTask, deliveryChange } = this.props;
     return (
       <div className="boxShadow block-background" style={{ height: '67vh', position: 'relative' }}>
         <div className="ink-flex">
@@ -28,8 +45,13 @@ export default class AddTask extends React.Component { //eslint-disable-line
           <div className="all-40">
             <div className="ink-flex vertical">
               <div className="title-desc ink-flex vertical">
-                <input type="text" placeholder="Title" style={{ height: '5.9vh' }}></input>
-                <textarea type="text" placeholder="Description" style={{ height: '14.5vh', width: '100%', color: '#fff', fontSize: '0.8rem' }} />
+                <input type="text" placeholder="Title" style={{ height: '5.9vh' }} onChange={this.titleChange}></input>
+                <textarea
+                  type="text"
+                  placeholder="Description"
+                  style={{ height: '14.5vh', width: '100%', color: '#fff', fontSize: '0.8rem' }}
+                  onChange={this.desChange}
+                />
               </div>
               <TaskMap pCord={pCord} dCord={dCord} />
             </div>
@@ -37,7 +59,13 @@ export default class AddTask extends React.Component { //eslint-disable-line
           <div className="all-60" style={{ height: '40vh' }}>
             <div className="ink-flex">
               <div className="all-100">
-                <TaskTab pickupCord={pickupCord} deliveryCord={deliveryCord} />
+                <TaskTab
+                  pickupCord={pickupCord}
+                  deliveryCord={deliveryCord}
+                  pickupChange={pickupChange}
+                  stateAddTask={stateAddTask}
+                  deliveryChange={deliveryChange}
+                />
               </div>
               <div className="all-100">
                 <div className="ink-flex" style={{ marginLeft: '1em' }}>

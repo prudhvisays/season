@@ -43,6 +43,15 @@ const realData = {
       responseType: 'json',
     }).then((response) => response.data);
   },
+  getTeamCustomersApi(salesDate) {
+    const GET_TEAM_CUSTOMERS_API = `${API_URL}/customers/sales`;
+    return axios({
+      method: 'POST',
+      url: GET_TEAM_CUSTOMERS_API,
+      data: salesDate,
+      responseType: 'json',
+    }).then((response) => response.data);
+  },
 };
 
 export default realData;

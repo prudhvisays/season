@@ -31,7 +31,7 @@ export default class Tabs extends React.Component { //eslint-disable-line
     evt.currentTarget.className += ' active';
   }
   render() {
-    const { pickupCord, deliveryCord } = this.props;
+    const { pickupCord, deliveryCord, pickupChange, stateAddTask, deliveryChange } = this.props;
     return (
       <div className="block-background" style={{ height: '40vh' }}>
         <TaskStyle className="ink-flex task-tab" style={{ margin: 0 }}>
@@ -39,10 +39,10 @@ export default class Tabs extends React.Component { //eslint-disable-line
           <li className="all-50"><a className="task-links" onClick={(event) => { this.taskTabs(event, 'add-delivery'); }}>Delivery Address</a></li>
         </TaskStyle>
         <div id="add-pickup" className="task-content" style={{ fontSize: '1rem' }}>
-          <TaskAddress pickupCord={pickupCord} deliveryCord={deliveryCord} />
+          <TaskAddress pickupCord={pickupCord} deliveryCord={deliveryCord} pickupChange={pickupChange} stateAddTask={stateAddTask} />
         </div>
         <div id="add-delivery" className="task-content">
-          <DeliveryAddress deliveryCord={deliveryCord} />
+          <DeliveryAddress deliveryCord={deliveryCord} stateAddTask={stateAddTask} deliveryChange={deliveryChange} />
         </div>
       </div>
     );

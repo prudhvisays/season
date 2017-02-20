@@ -122,3 +122,43 @@ export function getTeamCustomersFailure(data) {
     payload: data,
   };
 }
+export function pickupChange(data) {
+  return {
+    type: 'PICKUP_CHANGE',
+    payload: data,
+  };
+}
+export function deliveryChange(data) {
+  return {
+    type: 'DELIVERY_CHANGE',
+    payload: data,
+  };
+}
+
+export function addTaskInfo(data) {
+  return {
+    type: 'ADD_TASK_INFO',
+    payload: data,
+  };
+}
+
+export function postAddTask(data) {
+  return {
+    type: 'POST_ADD_TASK',
+    data,
+  };
+}
+
+export function postAddTaskSuccess(data) {
+  return {
+    type: 'POST_ADD_TASK_SUCCESS',
+    payload: data,
+  };
+}
+
+export function postAddTaskFailure(data) {
+    return {
+    type: 'POST_ADD_TASK_FAILURE',
+    payload: data,
+  };
+}

@@ -30,9 +30,11 @@ import 'sanitize.css/sanitize.css';
 import './Ink/dist/css/ink.css';
 import './Ink/dist/css/ink-ie.css';
 import './Ink/dist/css/ink-flex.min.css';
-import '../libs/leaflet.css';
-import '../Leaflet.draw-master/src/leaflet.draw.css';
-
+// import '../libs/leaflet.css';
+// import '../Leaflet.draw-master/src/leaflet.draw.css';
+import '../node_modules/leaflet/dist/leaflet.css';
+import '../node_modules/leaflet/dist/images/marker-icon.png';
+import '../node_modules/leaflet-draw/dist/leaflet.draw.css';
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
 // Optionally, this could be changed to leverage a created history
