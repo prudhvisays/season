@@ -142,6 +142,12 @@ export function addTaskInfo(data) {
   };
 }
 
+export function addingTask(data) {
+  return {
+    type: 'ADDING_TASK',
+    data,
+  };
+}
 export function postAddTask(data) {
   return {
     type: 'POST_ADD_TASK',
@@ -157,7 +163,7 @@ export function postAddTaskSuccess(data) {
 }
 
 export function postAddTaskFailure(data) {
-    return {
+  return {
     type: 'POST_ADD_TASK_FAILURE',
     payload: data,
   };

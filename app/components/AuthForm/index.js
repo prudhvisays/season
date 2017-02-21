@@ -1,6 +1,7 @@
 import React from 'react';
 import { changeForm } from '../../containers/AuthPage/actions';
 import { connect } from 'react-redux';
+import ErrorStyle from './ErrorStyle';
 
 class AuthForm extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -25,8 +26,9 @@ class AuthForm extends React.Component { // eslint-disable-line react/prefer-sta
   }
   render() {
     return (
-      <div className="ink-flex push-center">
-        <div className="all-50">
+      <div className="ink-flex push-center form-style">
+        { this.props.stateError && <ErrorStyle>{this.props.stateError.message}</ErrorStyle>}
+        <div className="all-70">
           <form onSubmit={this.onSubmit}>
             <div className="ink-flex push-middle vertical">
               <div className="input-div"><input type="text" placeholder="Username" onChange={this.changeUsername}></input></div>

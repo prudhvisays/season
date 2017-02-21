@@ -3,19 +3,30 @@ import { connect } from 'react-redux';
 import AuthStyle from './AuthStyle';
 import BackgrndStyle from './BackgrndStyle';
 import AuthForm from '../../components/AuthForm';
+import CurveStyle from './CurveStyle';
+import LogoStyles from './LogoStyles';
+import LoadingStyle from './LoadingStyle';
 import { loginRequest } from './actions';
-import Logo from './logo.gif';
+import Logo from './logo.png';
+import Loading from './loading.gif';
 
 class LoginPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { formState } = this.props.data;
+    const { formState, currentlySending, error } = this.props.data;
     return (
       <BackgrndStyle>
-        <div className="ink-flex push-center">
-          <AuthStyle className="all-50">
-            <AuthForm data={formState} onSubmit={this.props.login} />
-          </AuthStyle>
-        </div>
+        <CurveStyle>
+          { !currentlySending ? <div className="ink-flex push-center">
+            <AuthStyle className="all-50">
+              <LogoStyles className="ink-flex push-center">
+                <img src={Logo} className="logo" alt="logo" />
+              </LogoStyles>
+              <AuthForm data={formState} onSubmit={this.props.login} stateError={error} />
+            </AuthStyle>
+          </div> : <LoadingStyle className="ink-flex push-center">
+            <img src={Loading} alt="loading" />
+          </LoadingStyle>}
+        </CurveStyle>
       </BackgrndStyle>
     );
   }

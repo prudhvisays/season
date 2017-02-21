@@ -52,6 +52,41 @@ const realData = {
       responseType: 'json',
     }).then((response) => response.data);
   },
+  postAddTaskApi(data) {
+    const { pickup, delivery, taskInfo } = data.stateAddTask;
+    const payload = {
+      title: taskInfo.title,
+      description: taskInfo.description,
+      from_name: pickup.from_name,
+      from_phone: pickup.from_phone,
+      from_email: pickup.from_email,
+      from_address: pickup.from_address,
+      to_name: delivery.to_name,
+      to_phone: delivery.to_phone,
+      to_email: delivery.to_email,
+      to_address: delivery.to_address,
+      paymentType: 'PREPAID',
+      status: 'ASSIGNED',
+      to_date_time: delivery.from_date,
+      to_location: {
+        coordinates: [data.dCord.dLng, data.dCord.dLat],
+        type: 'Point',
+      },
+      from_date_time: pickup.from_date,
+      from_location: {
+        coordinates: [data.pCord.pLng, data.pCord.pLat],
+        type: 'Point',
+      },
+      pilot: '',
+    };
+    const POST_ADD_TASK_API = `${API_URL}/orders`;
+    return axios({
+      method: 'POST',
+      url: POST_ADD_TASK_API,
+      data: payload,
+      responseType: 'json',
+    }).then((response) => response.data);
+  },
 };
 
 export default realData;

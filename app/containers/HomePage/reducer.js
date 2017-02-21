@@ -17,8 +17,18 @@ const initialState = {
     request: false,
   },
   addTask: {
-    pickup: {},
-    delivery: {},
+    pickup: {
+      from_name: '',
+      from_phone: '',
+      from_email: '',
+      from_address: '',
+    },
+    delivery: {
+      to_name: '',
+      to_phone: '',
+      to_email: '',
+      to_address: '',
+    },
     taskInfo:{
     title: '',
     description: '',

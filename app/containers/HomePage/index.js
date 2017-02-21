@@ -94,6 +94,7 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
                     stateAddTask={this.props.addTask}
                     addTaskInfo={this.props.addTaskInfo}
                     deliveryChange={this.props.deliveryChange}
+                    postAddTask={this.props.postAddTask}
                   />
                 </div>}
                 {compressed && <div className="all-40 marginTop">{ pilotState && <UserInfo />}</div>}
@@ -171,6 +172,7 @@ export function mapDispatchToProps(dispatch) {
     pickupChange: (data) => { dispatch(actions.pickupChange(data)); },
     deliveryChange: (data) => { dispatch(actions.deliveryChange(data)); },
     addTaskInfo: (data) => { dispatch(actions.addTaskInfo(data)); },
+    postAddTask: (data) => { dispatch(actions.postAddTask(data)); },
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

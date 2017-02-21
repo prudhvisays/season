@@ -1,24 +1,24 @@
 import { takeLatest, takeEvery } from 'redux-saga';
 import { take, call, put, select, fork, cancel, delay, race } from 'redux-saga/effects';
 import realData from '../../Api';
-import { getOrderStatsSuccess, getPilotStatsSuccess, getStatsFailure, statsRequesting, getTeamsSuccess, getTeamsFailure, getTeamSalesSuccess, getTeamSalesFailure, getTeamCustomersSuccess, getTeamCustomersFailure } from './actions';
+import * as actions from './actions';
 import moment from 'moment';
 
 export function* fetchOrderStats() {
   const statsDate = moment().format('YYYYMMDD');
-  yield put(statsRequesting(true));
+  yield put(actions.statsRequesting(true));
   try {
     const [orderData, pilotData] = yield [
       call(realData.getOrderStatsApi, statsDate),
       call(realData.getPilotStatsApi, statsDate),
     ];
     console.log(orderData);
-    yield put(getOrderStatsSuccess(orderData));
-    yield put(getPilotStatsSuccess(pilotData));
+    yield put(actions.getOrderStatsSuccess(orderData));
+    yield put(actions.getPilotStatsSuccess(pilotData));
   } catch (err) {
-    yield put(getStatsFailure(err.message));
+    yield put(actions.getStatsFailure(err.message));
   } finally {
-    yield put(statsRequesting(false));
+    yield put(actions.statsRequesting(false));
   }
 }
 
@@ -35,10 +35,10 @@ export function* fetchOrderStatsRoot() {
 export function* fetchTeams() {
   try {
     const response = yield call(realData.getTeamsApi);
-    yield put(getTeamsSuccess(response));
+    yield put(actions.getTeamsSuccess(response));
   } catch (error) {
     if (error.response) {
-      yield put(getTeamsFailure(error.response.data));
+      yield put(actions.getTeamsFailure(error.response.data));
     }
   }
 }
@@ -65,10 +65,10 @@ export function* loadTeamSalesFlow() {
   try {
     yield take('GET_TEAMS_SUCCESS');
     const teamSales = yield call(realData.getTeamSalesApi, salesDate);
-    yield put(getTeamSalesSuccess(teamSales));
+    yield put(actions.getTeamSalesSuccess(teamSales));
   } catch (error) {
     if (error.response) {
-      yield put(getTeamSalesFailure(error.response.data));
+      yield put(actions.getTeamSalesFailure(error.response.data));
     }
   }
 }
@@ -77,10 +77,10 @@ export function* loadTeamCustomersFlow() {
   try {
     yield take('GET_TEAM_SALES_SUCCESS');
     const teamCustomers = yield call(realData.getTeamCustomersApi, salesDate);
-    yield put(getTeamCustomersSuccess(teamCustomers));
+    yield put(actions.getTeamCustomersSuccess(teamCustomers));
   } catch (error) {
     if (error.response) {
-      yield put(getTeamCustomersFailure(error.response.data));
+      yield put(actions.getTeamCustomersFailure(error.response.data));
     }
   }
 }
@@ -110,10 +110,10 @@ export function* fetchTeamSales(salesDate) {
   console.info(salesDate);
   try {
     const response = yield call(realData.getTeamSalesApi, salesDate);
-    yield put(getTeamSalesSuccess(response));
+    yield put(actions.getTeamSalesSuccess(response));
   } catch (error) {
     if (error.response) {
-      yield put(getTeamSalesFailure(error.response.data));
+      yield put(actions.getTeamSalesFailure(error.response.data));
     }
   }
 }
@@ -133,16 +133,17 @@ export function* fetchTeamSalesRoot() {
   yield take('LOCATION_CHANGE');
   yield cancel(salesRoot);
 }
-
+// POST ADD TASK
 export function* postAddTask(taskData) {
   try {
     const response = yield call(realData.postAddTaskApi, taskData);
-    yield put(postAddTaskSuccess(response));
+    yield put(actions.postAddTaskSuccess(response));
     return response;
-  } catch(error) {
-    if(error.response) {
-      yield put(postAddTaskFailure(error.message));
+  } catch (error) {
+    if (error.response) {
+      yield put(actions.postAddTaskFailure(error.message));
     }
+    return false;
   }
 }
 export function* postAddTaskFlow() {
@@ -153,16 +154,17 @@ export function* postAddTaskFlow() {
   }
 }
 export function* postAddTaskWatch() {
-  yield fork(fetchPostSalesWatch);
+  yield fork(postAddTaskFlow);
 }
 
 export function* postAddTaskRoot() {
-  const adddTaskWatcher = yield fork(fetchPostSalesWatch);
+  const postTaskWatcher = yield fork(postAddTaskWatch);
   yield take('LOCATION_CHANGE');
-  yield cancel(addTaskWatcher);
+  yield cancel(postTaskWatcher);
 }
 export default [
   fetchOrderStatsWatch,
   fetchTeamsRoot,
   fetchTeamSalesRoot,
+  postAddTaskRoot,
 ];
