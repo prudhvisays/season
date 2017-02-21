@@ -135,6 +135,7 @@ export function* fetchTeamSalesRoot() {
 }
 // POST ADD TASK
 export function* postAddTask(taskData) {
+  yield put(actions.addingTask(true));
   try {
     const response = yield call(realData.postAddTaskApi, taskData);
     yield put(actions.postAddTaskSuccess(response));
@@ -144,6 +145,8 @@ export function* postAddTask(taskData) {
       yield put(actions.postAddTaskFailure(error.message));
     }
     return false;
+  } finally {
+    yield put(actions.addingTask(false));
   }
 }
 export function* postAddTaskFlow() {
