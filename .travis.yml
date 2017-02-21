@@ -26,7 +26,4 @@ cache:
   directories:
     - node_modules
 
-deploy:
-  provider: heroku
-  api_key: 986dce4f-759e-40f7-8cb8-2ba058b4a19c
-  app: season-boy
+  
