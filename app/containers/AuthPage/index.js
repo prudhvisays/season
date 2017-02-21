@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AuthStyle from './AuthStyle';
-import BackgrndStyle from './BackgrndStyle';
+// import BackgrndStyle from './BackgrndStyle';
 import AuthForm from '../../components/AuthForm';
 import CurveStyle from './CurveStyle';
 import LogoStyles from './LogoStyles';
@@ -14,7 +14,7 @@ class LoginPage extends React.Component { // eslint-disable-line react/prefer-st
   render() {
     const { formState, currentlySending, error } = this.props.data;
     return (
-      <BackgrndStyle>
+      <section style={{ height: '100vh', background: '#fff' }}>
         <CurveStyle>
           { !currentlySending ? <div className="ink-flex push-center">
             <AuthStyle className="all-50">
@@ -27,7 +27,7 @@ class LoginPage extends React.Component { // eslint-disable-line react/prefer-st
             <img src={Loading} alt="loading" />
           </LoadingStyle>}
         </CurveStyle>
-      </BackgrndStyle>
+      </section>
     );
   }
 }
